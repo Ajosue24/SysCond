@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Article List</title>
+    <link rel="stylesheet" type="text/css"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" media="screen" />
+</head>
+<body>
+<div class="container"></div>
+<h2>Article List</h2>
+<table class="table table-striped">
+    <thead>
+    <th scope="row">#ID</th>
+    <th scope="row">Title</th>
+    <th scope="row">Category</th>
+    <th scope="row">Update</th>
+    <th scope="row">Delete</th>
+    </thead>
+    <tbody>
+<!--/*@thymesVar id="articleList" type="com.vv.model.Article"*/-->
+<tr th:each="article : ${articleList}" >
+    <td th:text="${article.id}"></td>
+    <td th:text="${article.title}"></td>
+    <td th:text="${article.category}"></td>
+    <td><a th:href="@{/article/updateArticle/} + ${article.id}" class="btn btn-info btn-xs"><i class="fa fa-folder-open"></i> editar </a></td>
+    <td>
+        <a th:href="@{/article/deleteArticle/} + ${article.id}" class="btn btn-info btn-xs"><i class="fa fa-folder-open"></i> borrar </a>
+    </td>
+</tr>
+    </tbody>
+</table>
+
+<!--<div class="btn-group">
+    <button type="button" class="btn btn-success">This is a success button</button>
+    <button type="button" class="btn btn-warning">This is a warning button</button>
+    <button type="button" class="btn btn-danger">This is a danger button</button>
+</div>-->
+<a class="btn btn-primary" th:href="@{addArticle/}" role="button">Add new
+    Article</a>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>
