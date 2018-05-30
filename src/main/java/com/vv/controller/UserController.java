@@ -20,6 +20,7 @@ public class UserController {
 
 
 /*metodo valida que usuario se encuentre autenticado
+*
   @GetMapping
     public String index(Model model, Principal principal){
         model.addAttribute("loggedInUser",principal.getName());
