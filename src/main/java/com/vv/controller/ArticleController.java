@@ -76,7 +76,7 @@ public class ArticleController {
 					
 					
 				}
-				//otra prueba
+				//otra pruebasy el automaticamentye
 
 
 }
