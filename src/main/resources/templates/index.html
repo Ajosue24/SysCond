@@ -5,12 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Spring Security Hola</title>
+    <div th:replace="staticTemplates/list_import :: listCss"/>
+
 </head>
-<body>
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+<div th:replace="staticTemplates/header :: leftMenu"/>
+    <div th:replace="staticTemplates/header :: TopMenu"/>
+       <div class="right_col" role="main" style="min-height: 1655px;">
+    <!--contenido de la pagina-->
+    <h1>hola</h1>
+    <hr>
+    <a href="logout">Logout</a>
+    <!--/contenido de la pagina-->
+       </div>
+</div>
+</div>
 
-<h1>hola</h1>
-<hr>
-<a href="logout">Logout</a>
-
+<div th:replace="staticTemplates/list_import :: ListJs"/>
 </body>
 </html>
