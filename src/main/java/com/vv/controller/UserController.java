@@ -20,6 +20,12 @@ public class UserController {
     public String header() {
         return "staticTemplates/header";
     }
+
+    @GetMapping("/pruebaPagos")
+    public String pruebaPagos() {
+        return "PruebaPagos";
+    }
+
 /*metodo valida que usuario se encuentre autenticado
 *
   @GetMapping
