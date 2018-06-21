@@ -15,6 +15,11 @@ public class UserController {
         return "index";
     }
 
+    @GetMapping("/index")
+    public String index() {
+        return "index";
+    }
+
 
     @GetMapping("/header")
     public String header() {

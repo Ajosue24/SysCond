@@ -14,7 +14,31 @@
         <div th:replace="staticTemplates/header :: leftMenu"/>
         <div th:replace="staticTemplates/header :: TopMenu"/>
         <div class="right_col" role="main" style="min-height: 1655px;">
-            <!--contenido de la pagina-->
+
+            <h2>Listado de Pagos</h2>
+            <table class="table table-striped">
+                <thead>
+                <th scope="row">#Cod</th>
+                <th scope="row">Nombre</th>
+                <th scope="row">direccion</th>
+                <th scope="row">Ciudad</th>
+                <th scope="row">Pais</th>
+                <th scope="row">Status</th>
+
+                </thead>
+              <tbody>
+
+              <!-- listadoGastos es la variable que se lleno en el controlador GastoControlle -->
+                <tr th:each="gastos : ${listadoGastos}" >
+                    <td th:text="${gastos.idGastos}"></td>
+                    <td th:text="${gastos.nombre}"></td>
+                    <td th:text="${gastos.descripcion}"></td>
+                    <td> </td>
+                </tr>
+              </tbody>
+
+            </table>
+                <!--contenido de la pagina--
              <table>
                  <tr>
                      <td>
