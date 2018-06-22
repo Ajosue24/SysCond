@@ -8,34 +8,34 @@ public class Gastos {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_gastos")
-    long idGastos ;
-    @Column(name="nombre")
-    String nombre;
-    @Column(name ="descripcion")
-    String descripcion;
+    @Column(name = "codig_gastos")
+    long codigGastos;
+    @Column(name = "descr_gastos")
+    String descrGastos;
+    @Column(name = "iffijo_gastos")
+    boolean isfijo;
 
-    public long getIdGastos() {
-        return idGastos;
+    public long getCodigGastos() {
+        return codigGastos;
     }
 
-    public void setIdGastos(long idGastos) {
-        this.idGastos = idGastos;
+    public void setCodigGastos(long codigGastos) {
+        this.codigGastos = codigGastos;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getDescrGastos() {
+        return descrGastos;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setDescrGastos(String descrGastos) {
+        this.descrGastos = descrGastos;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public boolean isIsfijo() {
+        return isfijo;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setIsfijo(boolean isfijo) {
+        this.isfijo = isfijo;
     }
 }

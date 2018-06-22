@@ -27,16 +27,11 @@ public class GastosController {
     //Muestra Todos los gastos en una lista llamada listadoGastos
     @RequestMapping(value="/listaGastos",method=RequestMethod.GET)
     public ModelAndView pruebaPagos(){
-        ModelAndView model = new ModelAndView("PruebaPagos");
+        ModelAndView model = new ModelAndView("gastosCRUD");
         /* el viewname coloco el nombre del html*/
         List<Gastos> listadoGastos = gastosService.listaGastos();
         model.addObject("listadoGastos",listadoGastos);
         return model;
-
-
-
-
-
 
 
 

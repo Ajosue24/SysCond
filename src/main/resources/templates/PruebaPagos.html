@@ -30,9 +30,9 @@
 
               <!-- listadoGastos es la variable que se lleno en el controlador GastoControlle -->
                 <tr th:each="gastos : ${listadoGastos}" >
-                    <td th:text="${gastos.idGastos}"></td>
-                    <td th:text="${gastos.nombre}"></td>
-                    <td th:text="${gastos.descripcion}"></td>
+                    <td th:text="${gastos.codigGastos}"></td>
+                    <td th:text="${gastos.descrGastos}"></td>
+                    <td th:text="${gastos.isIsfijo}"></td>
                     <td> </td>
                 </tr>
               </tbody>
