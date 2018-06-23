@@ -15,11 +15,22 @@ public class UserController {
         return "index";
     }
 
+    @GetMapping("/index")
+    public String index() {
+        return "index";
+    }
+
 
     @GetMapping("/header")
     public String header() {
         return "staticTemplates/header";
     }
+
+    @GetMapping("/pruebaPagos")
+    public String pruebaPagos() {
+        return "PruebaPagos";
+    }
+
 /*metodo valida que usuario se encuentre autenticado
 *
   @GetMapping
