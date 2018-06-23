@@ -62,7 +62,7 @@ public class ArticleController {
 		@RequestMapping(value="/saveArticle",method=RequestMethod.POST )
 		public ModelAndView save(@ModelAttribute("articleForm") Article article) {
 			articleService.saveOrUpdate(article);
-			return new ModelAndView("redirect:/article/list");
+			return new ModelAndView("rearticleFormdirect:/article/list");
 			
 			
 		}

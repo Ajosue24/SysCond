@@ -32,12 +32,26 @@ public class GastosController {
         List<Gastos> listadoGastos = gastosService.listaGastos();
         model.addObject("listadoGastos",listadoGastos);
         return model;
+    }
 
-
-
+    //editar
+    @RequestMapping(value="/updateGastos/{id}",method=RequestMethod.GET )
+    public String editArticle(@PathVariable long id) {
+        ModelAndView model = new ModelAndView();
+        Gastos gastos=gastosService.obtenerGasto(id);
+        model.addObject("gastosForm",gastos);
+        return "gastosCRUD :: #item";
 
     }
 
+    //Guardar
+    @RequestMapping(value="/saveGastos",method=RequestMethod.POST )
+    public ModelAndView save(@ModelAttribute("articleForm") Gastos gastos) {
+        gastosService.actualizaYGuarda(gastos);
+        return new ModelAndView("redirect:/gastos/listaGastos");
+
+
+    }
 
 
 

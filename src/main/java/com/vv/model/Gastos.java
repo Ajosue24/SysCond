@@ -13,7 +13,7 @@ public class Gastos {
     @Column(name = "descr_gastos")
     String descrGastos;
     @Column(name = "iffijo_gastos")
-    boolean isfijo;
+    Boolean isfijo;
 
     public long getCodigGastos() {
         return codigGastos;
@@ -31,11 +31,11 @@ public class Gastos {
         this.descrGastos = descrGastos;
     }
 
-    public boolean isIsfijo() {
+    public Boolean isIsfijo() {
         return isfijo;
     }
 
-    public void setIsfijo(boolean isfijo) {
+    public void setIsfijo(Boolean isfijo) {
         this.isfijo = isfijo;
     }
 }
