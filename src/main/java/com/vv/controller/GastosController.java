@@ -8,10 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -23,33 +20,44 @@ public class GastosController {
     @Autowired
     GastosService gastosService;
 
-
-    //Muestra Todos los gastos en una lista llamada listadoGastos
-    @RequestMapping(value="/listaGastos",method=RequestMethod.GET)
-    public ModelAndView pruebaPagos(){
-        ModelAndView model = new ModelAndView("gastosCRUD");
-        /* el viewname coloco el nombre del html*/
-        List<Gastos> listadoGastos = gastosService.listaGastos();
-        model.addObject("listadoGastos",listadoGastos);
-        return model;
-    }
-
     //editar
     @RequestMapping(value="/updateGastos/{id}",method=RequestMethod.GET )
-    public String editArticle(@PathVariable long id) {
-        ModelAndView model = new ModelAndView();
-        Gastos gastos=gastosService.obtenerGasto(id);
+    public ModelAndView editArticle(@PathVariable long id) {
+        ModelAndView model = new ModelAndView("gastosCRUD");
+        Gastos gastos= gastosService.obtenerGasto(id);
+
+        /*Vuelvo a consultar la lista y no
+        la guardo en session ya que si otro usuario hace alguna modificacion esta se me actualize en tiempo real*/
+        List<Gastos> listadoGastos = gastosService.listaGastos();
+        model.addObject("listadoGastos",listadoGastos);
         model.addObject("gastosForm",gastos);
-        return "gastosCRUD :: #item";
+        return model;
 
     }
 
     //Guardar
     @RequestMapping(value="/saveGastos",method=RequestMethod.POST )
-    public ModelAndView save(@ModelAttribute("articleForm") Gastos gastos) {
-        gastosService.actualizaYGuarda(gastos);
-        return new ModelAndView("redirect:/gastos/listaGastos");
+    public ModelAndView save(@ModelAttribute("gastosForm") Gastos gastos,@RequestParam(value="action", required=true) String action){
+        if(action.toString().equalsIgnoreCase("cancel")){
+            return new ModelAndView("redirect:/gastos/addGastos/");
+        }else{
+            gastosService.actualizaYGuarda(gastos);
+            return new ModelAndView("redirect:/gastos/addGastos/");
+        }
+    }
 
+    //Add Gastos
+    //Agregar
+    @RequestMapping(value="/addGastos/",method=RequestMethod.GET )
+    public ModelAndView addGastos() {
+        ModelAndView model = new ModelAndView();
+        Gastos gastos =new Gastos();
+        //Se iguala para que usuario pueda ver listas existentes
+        List<Gastos> listadoGastos = gastosService.listaGastos();
+        model.addObject("listadoGastos",listadoGastos);
+        model.addObject("gastosForm",gastos);
+        model.setViewName("gastosCRUD");
+        return model;
 
     }
 
