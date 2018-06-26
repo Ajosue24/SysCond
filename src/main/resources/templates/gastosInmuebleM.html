@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Spring Security Hola</title>
+    <div th:replace="staticTemplates/list_import :: listCss"/>
+
+</head>
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <div th:replace="staticTemplates/header :: leftMenu"/>
+        <div th:replace="staticTemplates/header :: TopMenu"/>
+        <div class="right_col" role="main" style="min-height: 1655px;">
+            <!--contenido de la pagina-->
+            <!--/*@thymesVar id="itemForm" type="com.vv.model.Item"*/-->
+            <form action="#" th:action="@{/article/saveArticle}" th:object="${itemForm}" method="post" id="item" name="item">
+                <input type="text" th:field="*{id}" th:class="form-control" th:id="txtid" required="true"/>
+                <input type="text" th:field="*{nombre}" th:class="form-control" th:id="txtNombre" required="true"/>
+            </form>
+            <!--/contenido de la pagina-->
+        </div>
+    </div>
+</div>
+<!--<div th:replace="staticTemplates/list_import :: ListJs"/>-->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    function loadItem(){$("#item").load("refreshItem");}
+</script>
+
+
+</body>
+</html>
