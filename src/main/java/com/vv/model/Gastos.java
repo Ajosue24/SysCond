@@ -1,6 +1,7 @@
 package com.vv.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="gastos")
@@ -13,6 +14,10 @@ public class Gastos {
     String descrGastos;
     @Column(name = "iffijo_gastos")
     Boolean isfijo;
+
+
+    @OneToMany(mappedBy = "codigGastos", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<DetallesGastosInmueble> detallesGastosInmueble;
 
     public long getCodigGastos() {
         return codigGastos;
@@ -37,4 +42,6 @@ public class Gastos {
     public void setIsfijo(Boolean isfijo) {
         this.isfijo = isfijo;
     }
+
+
 }

@@ -33,7 +33,6 @@ public class GastosServiceImpl implements GastosService {
                 gastosRepository.save(gastos);
             }catch (Exception e) {
                 e.printStackTrace();
-
         }
 
     }

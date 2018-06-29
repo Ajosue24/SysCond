@@ -23,7 +23,6 @@ public class ArticleServiceImpl implements ArticleService{
 
 	@Override
 	public Article getArticleById(long id) {
-		
 		return articleRepository.findById(id).get();
 	}
 
