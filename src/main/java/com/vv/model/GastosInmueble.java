@@ -9,18 +9,18 @@ import java.util.List;
 public class GastosInmueble {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "codig_gastos_inmueble")
+    @Column(name = "codig_gast_inmue")
     long codigGastosInmueble;
 
-    @Column(name = "descr_gastos_inmueble")
+    @Column(name = "descr_gast_inmue")
     String DescrGastosInmueble;
 
-    @Column(name = "fecha_gastos_inmueble")
+    @Column(name = "fecha_gast_inmue")
     Date fechaGastosInmueble;
 
-    @Column(name = "sub_total_gastos_inmueble")
+    @Column(name = "subt_gast_inmue")
     Double montoSubTotalGastosInmueble;
-    @Column(name = "monto_detalles_gasto_inmueble")
+    @Column(name = "total_gast_inmue")
     Double montoTotalGastosInmueble;
 
     @Column(name = "codig_condominio")

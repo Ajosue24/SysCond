@@ -6,43 +6,43 @@ import javax.persistence.*;
 @Table(name = "detalles_gasto_inmueble")
 public class DetallesGastosInmueble {
 
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-@Column(name = "codig_detalles_gasto_inmueble")
-    long codigDetallesGInmueble;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "codig_detalles_gast_inmue")
+    long codigDetallesGastInmue;
 
 
+    @Column(name = "monto_gast")
+    Double montoGasto;
 
-@Column(name = "monto_detalles_gasto_inmueble")
-    Double montoGastoInmueble;
-@Column(name = "obs_detall_gasto_inmueble")
+    @Column(name = "obs_detalles")
     String detallesGastoInmueble;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "codig_gastos_inmueble")
+    //muchos gastos inmueble
+    @ManyToOne
+    @JoinColumn(name = "codig_gast_inmue")
     private GastosInmueble codigGastosInmueble;
 
-@Column(name = "codig_condominio")
-    long codigCondominio;
-
-    @ManyToOne(fetch = FetchType.EAGER)
+//Muchos gastos
+    @ManyToOne
     @JoinColumn(name = "codig_gastos")
     private Gastos codigGastos;
 
-    public long getCodigDetallesGInmueble() {
-        return codigDetallesGInmueble;
+
+    public long getCodigDetallesGastInmue() {
+        return codigDetallesGastInmue;
     }
 
-    public void setCodigDetallesGInmueble(long codigDetallesGInmueble) {
-        this.codigDetallesGInmueble = codigDetallesGInmueble;
+    public void setCodigDetallesGastInmue(long codigDetallesGastInmue) {
+        this.codigDetallesGastInmue = codigDetallesGastInmue;
     }
 
-    public Double getMontoGastoInmueble() {
-        return montoGastoInmueble;
+    public Double getMontoGasto() {
+        return montoGasto;
     }
 
-    public void setMontoGastoInmueble(Double montoGastoInmueble) {
-        this.montoGastoInmueble = montoGastoInmueble;
+    public void setMontoGasto(Double montoGasto) {
+        this.montoGasto = montoGasto;
     }
 
     public String getDetallesGastoInmueble() {
@@ -53,13 +53,12 @@ public class DetallesGastosInmueble {
         this.detallesGastoInmueble = detallesGastoInmueble;
     }
 
-
-    public long getCodigCondominio() {
-        return codigCondominio;
+    public GastosInmueble getCodigGastosInmueble() {
+        return codigGastosInmueble;
     }
 
-    public void setCodigCondominio(long codigCondominio) {
-        this.codigCondominio = codigCondominio;
+    public void setCodigGastosInmueble(GastosInmueble codigGastosInmueble) {
+        this.codigGastosInmueble = codigGastosInmueble;
     }
 
     public Gastos getCodigGastos() {
@@ -68,13 +67,5 @@ public class DetallesGastosInmueble {
 
     public void setCodigGastos(Gastos codigGastos) {
         this.codigGastos = codigGastos;
-    }
-
-    public GastosInmueble getCodigGastosInmueble() {
-        return codigGastosInmueble;
-    }
-
-    public void setCodigGastosInmueble(GastosInmueble codigGastosInmueble) {
-        this.codigGastosInmueble = codigGastosInmueble;
     }
 }

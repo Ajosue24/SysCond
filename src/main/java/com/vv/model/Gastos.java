@@ -10,14 +10,14 @@ public class Gastos {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codig_gastos")
     long codigGastos;
-    @Column(name = "descr_gastos")
+    @Column(name = "descr")
     String descrGastos;
-    @Column(name = "iffijo_gastos")
+    @Column(name = "iffijo")
     Boolean isfijo;
 
-
+    //uno a muchos con la tabla detalles gasto inmueble
     @OneToMany(mappedBy = "codigGastos", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<DetallesGastosInmueble> detallesGastosInmueble;
+private List<DetallesGastosInmueble> detallesGastosInmuebles;
 
     public long getCodigGastos() {
         return codigGastos;
@@ -35,13 +35,11 @@ public class Gastos {
         this.descrGastos = descrGastos;
     }
 
-    public Boolean isIsfijo() {
+    public Boolean getIsfijo() {
         return isfijo;
     }
 
     public void setIsfijo(Boolean isfijo) {
         this.isfijo = isfijo;
     }
-
-
 }
