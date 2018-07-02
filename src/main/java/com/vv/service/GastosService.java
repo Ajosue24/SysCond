@@ -12,8 +12,6 @@ public interface GastosService {
 
     public Gastos obtenerGasto(long idGastos);
 
-
-
-
+    public List<Gastos> filtraDescripcionLike(String descripcion);
 
 }

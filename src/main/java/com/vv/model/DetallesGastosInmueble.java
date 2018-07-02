@@ -28,7 +28,6 @@ public class DetallesGastosInmueble {
     @JoinColumn(name = "codig_gastos")
     private Gastos codigGastos;
 
-
     public long getCodigDetallesGastInmue() {
         return codigDetallesGastInmue;
     }
@@ -68,4 +67,5 @@ public class DetallesGastosInmueble {
     public void setCodigGastos(Gastos codigGastos) {
         this.codigGastos = codigGastos;
     }
+
 }
