@@ -145,14 +145,12 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>Call of Duty</td>
-                                                        <td>El snort testosterone trophy driving gloves handsome gerry
-                                                            Richardson helvetica tousled street art master testosterone
-                                                            trophy driving gloves handsome gerry Richardson
-                                                        </td>
-                                                        <td>$64.50</td>
+                                                    <!--/*@thymesVar id="gastosForm" type="com.vv.model.DetallesGastosInmueble"*/-->
+                                                    <tr th:each="gastos : ${listadoGastos}" >
+                                                        <td th:text="${gastos.codigGastos.codigGastos}"></td>
+                                                        <td th:text="${gastos.codigGastos.descrGastos}"></td>
+                                                        <td th:text="${gastos.detallesGastoInmueble}"></td>
+                                                        <td th:text="${gastos.montoGasto}"></td>
                                                     </tr>
                                                     </tbody>
                                                 </table>
@@ -164,20 +162,13 @@
                                         <div class="row">
                                             <!-- accepted payments column -->
                                             <div class="col-xs-6">
-                                                <p class="lead">Payment Methods:</p>
-                                                <img src="images/visa.png" alt="Visa">
-                                                <img src="images/mastercard.png" alt="Mastercard">
-                                                <img src="images/american-express.png" alt="American Express">
-                                                <img src="images/paypal.png" alt="Paypal">
+                                                <p class="lead">Alguna Informacion</p>
                                                 <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
-                                                    Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                                                    weebly ning heekya handango imeem plugg dopplr jibjab, movity jajah
-                                                    plickers sifteo edmodo ifttt zimbra.
+                                                    algun texto
                                                 </p>
                                             </div>
                                             <!-- /.col -->
                                             <div class="col-xs-6">
-                                                <p class="lead">Amount Due 2/22/2014</p>
                                                 <div class="table-responsive">
                                                     <table class="table">
                                                         <tbody>

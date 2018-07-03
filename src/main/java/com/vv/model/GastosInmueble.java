@@ -26,6 +26,9 @@ public class GastosInmueble {
     @Column(name = "codig_condominio")
     Long condCondominio;
 
+    @Column(name = "is_generado")
+    Boolean isGenerado;
+
     @OneToMany(mappedBy = "codigGastosInmueble", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<DetallesGastosInmueble> detallesGastosInmueble;
 
@@ -83,5 +86,13 @@ public class GastosInmueble {
 
     public void setDetallesGastosInmueble(List<DetallesGastosInmueble> detallesGastosInmueble) {
         this.detallesGastosInmueble = detallesGastosInmueble;
+    }
+
+    public Boolean getGenerado() {
+        return isGenerado;
+    }
+
+    public void setGenerado(Boolean generado) {
+        isGenerado = generado;
     }
 }

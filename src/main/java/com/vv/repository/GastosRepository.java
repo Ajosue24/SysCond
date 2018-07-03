@@ -8,4 +8,4 @@ import java.util.List;
 public interface GastosRepository extends CrudRepository<Gastos,Long> {
 
     List<Gastos> findByDescrGastosContainingIgnoreCase(String gastos);
-}
+        }
