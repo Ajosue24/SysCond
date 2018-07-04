@@ -22,7 +22,6 @@ public class GastosInmuebleImpl implements GastosInmuebleService{
 
     @Override
     public GastosInmueble obtenerGastoInmuebleSiNofinalizado() {
-
         return gastosInmuebleRepository.findFirstByOrderByCodigGastosInmuebleDesc();
     }
 }
