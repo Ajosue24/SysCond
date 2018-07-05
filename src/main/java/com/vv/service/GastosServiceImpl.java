@@ -21,8 +21,6 @@ public class GastosServiceImpl implements GastosService {
     @Autowired
     GastosRepository gastosRepository;
 
-
-
     @Override
     public List<Gastos> listaGastos() {
         return (List<Gastos>)gastosRepository.findAll();
@@ -35,7 +33,6 @@ public class GastosServiceImpl implements GastosService {
         }catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     @Override

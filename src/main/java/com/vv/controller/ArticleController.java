@@ -63,8 +63,7 @@ public class ArticleController {
 		public ModelAndView save(@ModelAttribute("articleForm") Article article) {
 			articleService.saveOrUpdate(article);
 			return new ModelAndView("rearticleFormdirect:/article/list");
-			
-			
+
 		}
 
 		//Delete

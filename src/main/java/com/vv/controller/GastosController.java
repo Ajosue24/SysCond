@@ -32,7 +32,6 @@ public class GastosController {
         model.addObject("listadoGastos",listadoGastos);
         model.addObject("gastosForm",gastos);
         return model;
-
     }
 
     //Guardar
@@ -58,9 +57,5 @@ public class GastosController {
         model.addObject("gastosForm",gastos);
         model.setViewName("gastosCRUD");
         return model;
-
     }
-
-
-
 }
