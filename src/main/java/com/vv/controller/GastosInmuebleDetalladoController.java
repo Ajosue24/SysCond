@@ -5,6 +5,8 @@ import com.vv.model.DetallesGastosInmueble;
 import com.vv.model.Gastos;
 import com.vv.model.GastosInmueble;
 import com.vv.model.Item;
+import com.vv.repository.GastosInmuebleDetalladoRepository;
+import com.vv.service.GastosInmuebleDetalladoService;
 import com.vv.service.GastosInmuebleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,28 +28,29 @@ public class GastosInmuebleDetalladoController {
     @Autowired
     GastosInmuebleService gastosInmuebleService;
 
+    @Autowired
+    GastosInmuebleDetalladoService gastosDetalladosService;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView getPages() {
         ModelAndView model = new ModelAndView("gastosInmuebleM");
-        String nombreGasto = "hola";
+        List<DetallesGastosInmueble> listaDetallesGastosInmuebles = new ArrayList<>();
+        DetallesGastosInmueble detallesGastosInmueble;
        GastosInmueble gastosInmueble = gastosInmuebleService.obtenerGastoInmuebleSiNofinalizado();
-        DetallesGastosInmueble item = new DetallesGastosInmueble();
+       if(gastosInmueble.getGenerado()!= null && gastosInmueble.getGenerado()){
+           gastosInmuebleService.guardarActualizarGastoInmueble(new GastosInmueble());
+       }else{
+           //lista de BD de la tabla gastosDetallados
+           listaDetallesGastosInmuebles = gastosDetalladosService.listaDetallesActuales(gastosInmueble.getCodigGastosInmueble());
+       }
 
-        //lista prueba
-        DetallesGastosInmueble obj = new DetallesGastosInmueble();
-        List<DetallesGastosInmueble> listadoDetGInm = new ArrayList<>();
-        obj.setMontoGasto(5000.00);
-        Gastos g = new Gastos();
-        g.setCodigGastos(1);
-        g.setDescrGastos("test");
-        obj.setCodigGastos(g);
-        obj.setDetallesGastoInmueble("Comentario");
-        listadoDetGInm.add(obj);
-        model.addObject("listadoGastos",listadoDetGInm);
-        //fin lista prueba
 
-        model.addObject("nombreGasto",nombreGasto);
-        model.addObject("detGastoInm", item);
+
+
+        //fin lista
+        model.addObject("gastosInmueble",gastosInmueble);
+        model.addObject("listadoGastos",listaDetallesGastosInmuebles);
+        model.addObject("detGastoInm", detallesGastosInmueble = new DetallesGastosInmueble());
         return model;
 
     }
@@ -65,15 +68,7 @@ public class GastosInmuebleDetalladoController {
     @RequestMapping(value = "/guardarGastosM",method=RequestMethod.POST )
     public ModelAndView guardarGastosM(@ModelAttribute("detGastoInm") DetallesGastosInmueble detallesGastosInmueble, @RequestParam(value="descGM", required=false) String descGM) {
         ModelAndView model = new ModelAndView("/gastosInmuebleM/");
-        DetallesGastosInmueble obj = new DetallesGastosInmueble();
-        List<DetallesGastosInmueble> listadoDetGInm = new ArrayList<>();
-        obj.setMontoGasto(5000.00);
-        Gastos g = new Gastos();
-        g.setCodigGastos(1);
-        obj.setCodigGastos(g);
-        obj.setDetallesGastoInmueble("prueba");
-        listadoDetGInm.add(obj);
-        model.addObject("listadoGastos",obj);
+        gastosDetalladosService.actualizaYGuardaGastoDetallado(detallesGastosInmueble);
         return model;
     }
 
