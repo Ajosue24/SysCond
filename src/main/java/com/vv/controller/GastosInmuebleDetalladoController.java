@@ -36,16 +36,17 @@ public class GastosInmuebleDetalladoController {
         ModelAndView model = new ModelAndView("gastosInmuebleM");
         List<DetallesGastosInmueble> listaDetallesGastosInmuebles = new ArrayList<>();
         DetallesGastosInmueble detallesGastosInmueble;
-       GastosInmueble gastosInmueble = gastosInmuebleService.obtenerGastoInmuebleSiNofinalizado();
-       if(gastosInmueble.getGenerado()!= null && gastosInmueble.getGenerado()){
-           gastosInmuebleService.guardarActualizarGastoInmueble(new GastosInmueble());
+        GastosInmueble gastosInmueble = new GastosInmueble();
+//Validar si se genero el recibo anterior
+       if(gastosInmuebleService.obtenerGastoInmuebleSiNofinalizado().getGenerado()){
+           gastosInmuebleService.guardarActualizarGastoInmueble(gastosInmueble);
+           gastosInmueble = gastosInmuebleService.obtenerGastoInmuebleSiNofinalizado();
        }else{
+           gastosInmueble = gastosInmuebleService.obtenerGastoInmuebleSiNofinalizado();
            //lista de BD de la tabla gastosDetallados
-           listaDetallesGastosInmuebles = gastosDetalladosService.listaDetallesActuales(gastosInmueble.getCodigGastosInmueble());
+           listaDetallesGastosInmuebles = gastosDetalladosService.listaDetallesActuales(gastosInmueble);
+
        }
-
-
-
 
         //fin lista
         model.addObject("gastosInmueble",gastosInmueble);
@@ -66,10 +67,13 @@ public class GastosInmuebleDetalladoController {
         return "gastosInmuebleM :: #item";
     }
     @RequestMapping(value = "/guardarGastosM",method=RequestMethod.POST )
-    public ModelAndView guardarGastosM(@ModelAttribute("detGastoInm") DetallesGastosInmueble detallesGastosInmueble, @RequestParam(value="descGM", required=false) String descGM) {
-        ModelAndView model = new ModelAndView("/gastosInmuebleM/");
+    public String guardarGastosM(@ModelAttribute("detGastoInm") DetallesGastosInmueble detallesGastosInmueble,@ModelAttribute("gastosInmueble") GastosInmueble gastosInmueble) {
+        ModelAndView model = new ModelAndView();
         gastosDetalladosService.actualizaYGuardaGastoDetallado(detallesGastosInmueble);
-        return model;
+
+        List<DetallesGastosInmueble> listaDetallesGastosInmuebles = gastosDetalladosService.listaDetallesActuales(gastosInmueble);
+        model.addObject("listadoGastos",listaDetallesGastosInmuebles);
+        return "gastosInmuebleM :: #tablaGastosDetallados";
     }
 
 }

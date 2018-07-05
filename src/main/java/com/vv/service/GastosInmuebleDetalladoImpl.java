@@ -1,6 +1,7 @@
 package com.vv.service;
 
 import com.vv.model.DetallesGastosInmueble;
+import com.vv.model.GastosInmueble;
 import com.vv.repository.GastosInmuebleDetalladoRepository;
 import com.vv.repository.GastosInmuebleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,8 @@ public class GastosInmuebleDetalladoImpl implements GastosInmuebleDetalladoServi
     }
 
     @Override
-    public List<DetallesGastosInmueble> listaDetallesActuales(long nroRecibo) {
-        return (List<DetallesGastosInmueble>)gastosInmuebleDetallado.findDetallesGastosInmuebleByCodigGastosInmuebleEquals(nroRecibo);
+    public List<DetallesGastosInmueble> listaDetallesActuales(GastosInmueble nroRecibo) {
+        return (List<DetallesGastosInmueble>)gastosInmuebleDetallado.findByCodigGastosInmueble(nroRecibo);
 
     }
 }
