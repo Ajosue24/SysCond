@@ -1,5 +1,7 @@
 package com.vv.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -16,6 +18,7 @@ public class GastosInmueble {
     String DescrGastosInmueble;
 
     @Column(name = "fecha_gast_inmue")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     Date fechaGastosInmueble;
 
     @Column(name = "subt_gast_inmue")
