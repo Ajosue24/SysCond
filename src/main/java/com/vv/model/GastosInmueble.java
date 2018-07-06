@@ -29,7 +29,7 @@ public class GastosInmueble {
     @Column(name = "codig_condominio")
     Long condCondominio;
 
-    @Column(name = "is_generado")
+    @Column(name = "if_generado")
     Boolean isGenerado;
 
     @OneToMany(mappedBy = "codigGastosInmueble", cascade = CascadeType.ALL, fetch = FetchType.EAGER)

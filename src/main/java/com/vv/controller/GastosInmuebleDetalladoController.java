@@ -37,12 +37,12 @@ public class GastosInmuebleDetalladoController {
         List<DetallesGastosInmueble> listaDetallesGastosInmuebles = new ArrayList<>();
         DetallesGastosInmueble detallesGastosInmueble;
         GastosInmueble gastosInmueble = new GastosInmueble();
+        gastosInmueble = gastosInmuebleService.obtenerGastoInmuebleSiNofinalizado();
 //Validar si se genero el recibo anterior
-       if(gastosInmuebleService.obtenerGastoInmuebleSiNofinalizado().getGenerado()){
+       if(gastosInmueble.getGenerado()){
            gastosInmuebleService.guardarActualizarGastoInmueble(gastosInmueble);
            gastosInmueble = gastosInmuebleService.obtenerGastoInmuebleSiNofinalizado();
        }else{
-           gastosInmueble = gastosInmuebleService.obtenerGastoInmuebleSiNofinalizado();
            //lista de BD de la tabla gastosDetallados
            listaDetallesGastosInmuebles = gastosDetalladosService.listaDetallesActuales(gastosInmueble);
 
