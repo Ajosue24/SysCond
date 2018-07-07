@@ -9,6 +9,7 @@ import java.util.List;
 @Entity
 @Table(name = "gastos_inmueble")
 public class GastosInmueble {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codig_gast_inmue")
@@ -18,7 +19,7 @@ public class GastosInmueble {
     String DescrGastosInmueble;
 
     @Column(name = "fecha_gast_inmue")
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date fechaGastosInmueble;
 
     @Column(name = "subt_gast_inmue")

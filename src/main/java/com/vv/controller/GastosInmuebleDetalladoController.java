@@ -51,7 +51,7 @@ public class GastosInmuebleDetalladoController {
         //fin lista
         model.addObject("gastosInmueble",gastosInmueble);
         model.addObject("listadoGastos",listaDetallesGastosInmuebles);
-        model.addObject("detGastoInm", detallesGastosInmueble = new DetallesGastosInmueble());
+        model.addObject("detallesGastosInmueble", detallesGastosInmueble = new DetallesGastosInmueble());
         return model;
 
     }
@@ -66,14 +66,52 @@ public class GastosInmuebleDetalladoController {
         model.addAttribute("itemForm", item);
         return "gastosInmuebleM :: #item";
     }
-    @RequestMapping(value = "/guardarGastosM",method=RequestMethod.POST )
-    public String guardarGastosM(@ModelAttribute("detGastoInm") DetallesGastosInmueble detallesGastosInmueble,@ModelAttribute("gastosInmueble") GastosInmueble gastosInmueble) {
-        ModelAndView model = new ModelAndView();
-        gastosDetalladosService.actualizaYGuardaGastoDetallado(detallesGastosInmueble);
-
+    @RequestMapping(value = "/guardarGastosM",method = RequestMethod.POST )
+    public ModelAndView guardarGastosM(@ModelAttribute("detallesGastosInmueble") DetallesGastosInmueble detallesGastosInmueble,@ModelAttribute("gastosInmueble")GastosInmueble gastosInmueble) {
+        gastosInmueble.setCondCondominio(1l);
+        gastosInmueble.setGenerado(false);
         List<DetallesGastosInmueble> listaDetallesGastosInmuebles = gastosDetalladosService.listaDetallesActuales(gastosInmueble);
-        model.addObject("listadoGastos",listaDetallesGastosInmuebles);
-        return "gastosInmuebleM :: #tablaGastosDetallados";
+        Double subTotal=0.00;
+        for(DetallesGastosInmueble det:listaDetallesGastosInmuebles){
+
+            try {
+                subTotal+= det.getMontoGasto();
+            }catch (NullPointerException e){
+                subTotal+=0.00;
+            }
+        }
+        gastosInmueble.setMontoSubTotalGastosInmueble(subTotal);
+        gastosDetalladosService.actualizaYGuardaGastoDetallado(detallesGastosInmueble);
+        gastosInmuebleService.guardarActualizarGastoInmueble(gastosInmueble);
+
+        return new ModelAndView("redirect:/gastosInmuebleM/");
+    }
+
+    @RequestMapping(value = "/guardarGastoInmueble",method = RequestMethod.POST )
+    public String guardarGastoInmueble(@ModelAttribute("detallesGastosInmueble") DetallesGastosInmueble detallesGastosInmueble,@ModelAttribute("gastosInmueble")GastosInmueble gastosInmueble,Model model) {
+
+
+            return "";
+        }
+
+
+    @RequestMapping(value="/actualizarTabla", method=RequestMethod.GET)
+    public String getEventCount(@RequestParam(value = "codigo", required = false) String codigo,@RequestParam(value = "comentario", required = false) String comentario,@RequestParam(value = "monto", required = false) String monto,@RequestParam(value = "codigGastosInmueble", required = false) String codigGastosInmueble,Model model) {
+        //Funcion para convertir en obj lo que viene del front
+        Gastos gastos = new Gastos();
+        GastosInmueble gastosInmueble = new GastosInmueble();
+        gastosInmueble.setCodigGastosInmueble(Long.parseLong(codigGastosInmueble));
+        gastosInmueble.setCondCondominio(01l);
+        DetallesGastosInmueble detallesGastosInmueble = new DetallesGastosInmueble();
+        gastos.setCodigGastos(Long.parseLong(codigo));
+        detallesGastosInmueble.setDetallesGastoInmueble(comentario);
+        detallesGastosInmueble.setMontoGasto(Double.parseDouble(monto));
+        detallesGastosInmueble.setCodigGastosInmueble(gastosInmueble);
+        detallesGastosInmueble.setCodigGastos(gastos);
+        gastosDetalladosService.actualizaYGuardaGastoDetallado(detallesGastosInmueble);
+        model.addAttribute("listadoGastos", gastosDetalladosService.listaDetallesActuales(gastosInmueble));
+        // change "myview" to the name of your view
+        return "gastosInmuebleM :: #tablaListaGastosR";
     }
 
 }
