@@ -8,4 +8,7 @@ import java.util.List;
 public interface GastosInmuebleRepository extends CrudRepository <GastosInmueble,Long>{
 
    GastosInmueble findFirstByOrderByCodigGastosInmuebleDesc();
+
+   List<GastosInmueble> findByIsGeneradoFalse();
+
 }

@@ -67,5 +67,4 @@ public class DetallesGastosInmueble {
     public void setCodigGastos(Gastos codigGastos) {
         this.codigGastos = codigGastos;
     }
-
 }

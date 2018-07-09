@@ -19,6 +19,13 @@ public class GastosInmuebleDetalladoImpl implements GastosInmuebleDetalladoServi
 
     @Override
     public void actualizaYGuardaGastoDetallado(DetallesGastosInmueble detallesGastosInmueble) {
+        List<DetallesGastosInmueble> listDGI = gastosInmuebleDetallado.findByCodigGastosInmueble(detallesGastosInmueble.getCodigGastosInmueble());
+        for(DetallesGastosInmueble obj: listDGI){
+            if(obj.getCodigGastos().getCodigGastos() == detallesGastosInmueble.getCodigGastos().getCodigGastos()){
+                detallesGastosInmueble.setMontoGasto(obj.getMontoGasto()+detallesGastosInmueble.getMontoGasto());
+               detallesGastosInmueble.setCodigDetallesGastInmue(obj.getCodigDetallesGastInmue());
+            }
+        }
         gastosInmuebleDetallado.save(detallesGastosInmueble);
     }
 

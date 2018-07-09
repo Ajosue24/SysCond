@@ -3,6 +3,7 @@ package com.vv.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
@@ -16,21 +17,22 @@ public class GastosInmueble {
     long codigGastosInmueble;
 
     @Column(name = "descr_gast_inmue")
-    String DescrGastosInmueble;
+    String descrGastosInmueble;
 
     @Column(name = "fecha_gast_inmue")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date fechaGastosInmueble;
 
-    @Column(name = "subt_gast_inmue")
+    @Column(name="subt_gast_inmue", columnDefinition="Decimal(10,2)")
     Double montoSubTotalGastosInmueble;
-    @Column(name = "total_gast_inmue")
+    @Column(name="total_gast_inmue", columnDefinition="Decimal(10,2)")
     Double montoTotalGastosInmueble;
 
+    @NotNull
     @Column(name = "codig_condominio")
     Long condCondominio;
 
-    @Column(name = "if_generado")
+    @Column(name="if_generado", columnDefinition="BOOLEAN DEFAULT false")
     Boolean isGenerado;
 
     @OneToMany(mappedBy = "codigGastosInmueble", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -45,11 +47,11 @@ public class GastosInmueble {
     }
 
     public String getDescrGastosInmueble() {
-        return DescrGastosInmueble;
+        return descrGastosInmueble;
     }
 
     public void setDescrGastosInmueble(String descrGastosInmueble) {
-        DescrGastosInmueble = descrGastosInmueble;
+        this.descrGastosInmueble = descrGastosInmueble;
     }
 
     public Date getFechaGastosInmueble() {

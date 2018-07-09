@@ -9,4 +9,5 @@ import java.util.List;
 public interface GastosInmuebleDetalladoRepository extends CrudRepository<DetallesGastosInmueble,Long> {
 
     List<DetallesGastosInmueble> findByCodigGastosInmueble(GastosInmueble nroGasto);
+
 }
