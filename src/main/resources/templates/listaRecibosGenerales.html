@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Spring Security Hola</title>
+    <div th:replace="staticTemplates/list_import :: listCss"/>
+
+</head>
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <div th:replace="staticTemplates/header :: leftMenu"/>
+        <div th:replace="staticTemplates/header :: TopMenu"/>
+        <div class="right_col" role="main" style="min-height: 1655px;">
+            <!--contenido de la pagina-->
+            <div class="">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3>Administrador Recibos</h3>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <!--inicio Formulario-->
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Recibos Generales
+                                    <small>Agrege / Edite / Chequeé </small>
+                                </h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <br/>
+                                <p class="text-muted font-13 m-b-30">
+                                    Recibos Pendientes Por Cerrar
+                                </p>
+                                <div class="col-md-1 col-sm-5 col-xs-12 form-group pull-right top_search">
+                                <a class="btn btn-app">
+                                    <i class="fa fa-pencil"></i> Crear Nuevo
+                                </a>
+                                </div>
+                                <table id="datatable-responsive"
+                                class="table table-striped table-bordered dt-responsive nowrap"
+                                cellspacing="0" width="100%">
+                                <thead>
+                                <tr>
+                                    <th>NroRecibo</th>
+                                    <th>Descripción</th>
+                                    <th>Fecha</th>
+                                    <th>Monto Sub total</th>
+                                    <th>Monto Total</th>
+                                    <th>Editar</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="recibosNoGenerados : ${listaReciboNoGenerados}">
+                                    <td th:text="${recibosNoGenerados.codigGastosInmueble}"></td>
+                                    <td  th:text="${recibosNoGenerados.descrGastosInmueble}"></td>
+                                    <td th:text="${recibosNoGenerados.fechaGastosInmueble}"></td>
+                                    <td th:text="${recibosNoGenerados.montoSubTotalGastosInmueble}"></td>
+                                    <td th:text="${recibosNoGenerados.montoTotalGastosInmueble}"></td>
+                                    <td>Editar</td>
+                                </tr>
+                                </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                        <!--Fin Formulario-->
+                    </div>
+                </div>
+            </div>
+            <a href="logout">Logout</a>
+            <!--/contenido de la pagina-->
+        </div>
+    </div>
+</div>
+
+<div th:replace="staticTemplates/list_import :: ListJs"/>
+<div th:replace="modalCrearRM :: modalCrearRM"/>
+</body>
+</html>
