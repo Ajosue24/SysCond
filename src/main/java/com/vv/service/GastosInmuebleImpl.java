@@ -47,6 +47,11 @@ public class GastosInmuebleImpl implements GastosInmuebleService{
     }
 
     @Override
+    public List<GastosInmueble> obtenerListaGastosInmuebleFinalizados() {
+        return gastosInmuebleRepository.findByIsGeneradoTrue();
+    }
+
+    @Override
     public List<GastosInmueble> obtenerListaGastosInmuebleNoFinalizados() {
        return gastosInmuebleRepository.findByIsGeneradoFalse();
     }

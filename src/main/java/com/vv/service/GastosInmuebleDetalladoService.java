@@ -9,9 +9,11 @@ public interface GastosInmuebleDetalladoService {
 
     public void actualizaYGuardaGastoDetallado(DetallesGastosInmueble detallesGastosInmueble);
 
-    public void eliminarGastoDetallado(long codigDetallesGastInmue);
+    public void eliminarGastoDetallado(Long codigDetallesGastInmue);
 
     public List<DetallesGastosInmueble> listaDetallesActuales(GastosInmueble nroRecibo);
+
+    public DetallesGastosInmueble buscarDetallesGastosInmueblePorId(Long codigDetallesGastInmue);
 
 
 

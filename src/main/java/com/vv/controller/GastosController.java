@@ -58,4 +58,16 @@ public class GastosController {
         model.setViewName("gastosCRUD");
         return model;
     }
+    @RequestMapping(value="/borrarGastos/{id}",method=RequestMethod.GET )
+    public ModelAndView borrarGastos(@PathVariable long id) {
+        ModelAndView model = new ModelAndView("gastosCRUD");
+        gastosService.eliminarGasto(id);
+
+        /*Vuelvo a consultar la lista y no
+        la guardo en session ya que si otro usuario hace alguna modificacion esta se me actualize en tiempo real*/
+        List<Gastos> listadoGastos = gastosService.listaGastos();
+        model.addObject("listadoGastos",listadoGastos);
+        model.addObject("gastosForm",new Gastos());
+        return model;
+    }
 }

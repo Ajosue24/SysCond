@@ -26,6 +26,10 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="x_panel">
+                                <form id="formAddGastosI" action="#"
+                                      th:action="@{/gastosInmuebleM/guardarGastosM}"
+                                      th:object="${formDetallesGastosInmueble}"
+                                      method="post">
                                 <div class="x_title">
                                     <h2>Generacion de Recibo
                                         <small>Realice su recibo correspondiente</small>
@@ -102,29 +106,30 @@
                                         <!--Agregar Elementos al recibo-->
                                         <div class="x_content">
                                             <!-- start form for validation -->
-                                            <form id="formAddGastosI" action="#"
-                                                  th:action="@{/gastosInmuebleM/guardarGastosM}" th:object="${formDetallesGastosInmueble}"
-                                                  method="post">
                                                 <div class="col-md-1 col-sm-12 col-xs-12 form-group">
                                                     <label for="codigGM">Codigo:</label>
                                                     <!--/*@thymesVar id="codigGastos" type="com.vv.model.DetallesGastosInmueble"*/-->
                                                     <input type="number" id="codigGM" class="form-control"
                                                            name="codigGM"
                                                            placeholder="ID" required
-                                                           th:field="*{codigGastos}"/>
-                                                    <p th:if="${#fields.hasErrors('codigGastos')}" class="label label-danger" th:errors="*{codigGastos}">Incorrect CG</p>
+                                                           th:field="*{codigGastos.codigGastos}"/>
+                                                    <p th:if="${#fields.hasErrors('codigGastos')}"
+                                                       class="label label-danger" th:errors="*{codigGastos}">Incorrect
+                                                        CG</p>
                                                 </div>
                                                 <div class="col-md-3 col-sm-12 col-xs-12 form-group">
                                                     <label th:for="descGM">Descripcion/Gasto * :</label>
                                                     <input type="text" th:id="descGM" class="form-control" name="descGM"
+                                                           th:field="*{codigGastos.descrGastos}"
                                                            placeholder="Gasto" required/>
                                                 </div>
                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                     <label th:for="detallesGastoInmueble">Comentario</label>
                                                     <textarea th:id="detallesGastoInmueble" required="required"
-                                                              class="form-control"
                                                               th:name="detallesGastoInmueble"
+                                                              class="form-control"
                                                               style="max-width: 100%;"
+                                                              rows="1"
                                                               th:field="*{detallesGastoInmueble}"></textarea>
                                                 </div>
                                                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
@@ -135,7 +140,7 @@
                                                            th:field="*{montoGasto}"/>
                                                 </div>
                                                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
-                                                    <label >Agregar gasto:</label>
+                                                    <label>Agregar gasto:</label>
                                                     <button th:id="guardarGastosM" th:type="submit"
                                                             class="btn btn-success"
                                                             th:value="guardarGastosM">Submit
@@ -166,7 +171,17 @@
                                                         <td th:text="${gastosDetallados.codigGastos.codigGastos}"></td>
                                                         <td th:text="${gastosDetallados.codigGastos.descrGastos}"></td>
                                                         <td th:text="${gastosDetallados.detallesGastoInmueble}"></td>
-                                                        <td th:text="${gastosDetallados.montoGasto}"></td>
+                                                        <td th:text="${#numbers.formatDecimal(gastosDetallados.montoGasto, 0, 'POINT', 2, 'COMMA')}">
+                                                            10,00
+                                                        <td>
+
+                                                        <td>
+                                                            <a th:href="@{/gastosInmuebleM/updateGastosDetallados/} + ${gastosDetallados.codigDetallesGastInmue}"
+                                                               class="btn btn-round btn-info btn-xs"><i
+                                                                    class="fa fa-wrench"></i> Editar </a>
+                                                            <a th:href="@{/gastosInmuebleM/borrarGastosDetallados/} + ${gastosDetallados.codigDetallesGastInmue}"
+                                                               class="btn btn-round btn-danger btn-xs"><i
+                                                                    class="fa fa-remove"></i> Borrar </a></td>
 
                                                     </tr>
                                                     </tbody>
@@ -227,7 +242,7 @@
                                                 <button class="btn btn-success pull-right" th:type="submit"
                                                         th:name="finalizarG" th:id="finalizarG" th:value="finalizarG"
                                                         formnovalidate><i
-                                                        class="fa fa-credit-card"></i> Finalizar Recibo
+                                                        class="fa fa-save"></i> Finalizar Recibo
                                                 </button>
                                                 <button class="btn btn-primary pull-right" style="margin-right: 5px;"><i
                                                         class="fa fa-download"></i> Generate PDF
@@ -236,7 +251,7 @@
                                         </div>
                                     </section>
                                 </div>
-
+                                </form>
                             </div>
                         </div>
 
@@ -260,7 +275,7 @@
         var fecha = $("#fechaGastosInmueble").val();
         var codigGI = $("#codigGastosInmueble").text();
         $.ajax({
-            url: '/api/vvsyscond/refreshNombreFecha/' + descrGI +'/'+fecha+'/'+codigGI,
+            url: '/api/vvsyscond/refreshNombreFecha/' + descrGI + '/' + fecha + '/' + codigGI,
             dataType: 'json',
             contentType: 'application/json',
             success: function (data) {
@@ -271,21 +286,22 @@
             }
         });
     }
-//ejemplo Ajax
-/*    function updateEventCount() {
-        var codigo = $("#codigGM").val();
-        var codigGastosInmueble = $("#codigGastosInmueble").text();
-        var comentario = $("#comentarioGM").val();
-        var monto = $("#montoGM").val();
-        $.get("actualizarTabla", {
-            codigo: codigo,
-            comentario: comentario,
-            monto: monto,
-            codigGastosInmueble: codigGastosInmueble
-        }, function (fragment) { // get from controller
-            $("#tablaListaGastosR").replaceWith(fragment); // update snippet of page
-        });
-    }*/
+
+    //ejemplo Ajax
+    /*    function updateEventCount() {
+            var codigo = $("#codigGM").val();
+            var codigGastosInmueble = $("#codigGastosInmueble").text();
+            var comentario = $("#comentarioGM").val();
+            var monto = $("#montoGM").val();
+            $.get("actualizarTabla", {
+                codigo: codigo,
+                comentario: comentario,
+                monto: monto,
+                codigGastosInmueble: codigGastosInmueble
+            }, function (fragment) { // get from controller
+                $("#tablaListaGastosR").replaceWith(fragment); // update snippet of page
+            });
+        }*/
 
     $(document).ready(function () {
         $("#agregar").click(function () {
@@ -316,9 +332,9 @@
         });
     });
 
-/*    $( "#descrGastosInmueble" ).blur(function() {
+    /*    $( "#descrGastosInmueble" ).blur(function() {
 
-    });*/
+        });*/
 </script>
 
 

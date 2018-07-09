@@ -11,5 +11,7 @@ public interface GastosInmuebleService {
 
    public GastosInmueble obtenerGastoInmuebleSiNofinalizado();
 
+    public List<GastosInmueble> obtenerListaGastosInmuebleFinalizados();
+
    public List<GastosInmueble> obtenerListaGastosInmuebleNoFinalizados();
 }

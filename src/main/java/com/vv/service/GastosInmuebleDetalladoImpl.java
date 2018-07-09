@@ -30,7 +30,7 @@ public class GastosInmuebleDetalladoImpl implements GastosInmuebleDetalladoServi
     }
 
     @Override
-    public void eliminarGastoDetallado(long codigDetallesGastInmue) {
+    public void eliminarGastoDetallado(Long codigDetallesGastInmue) {
         gastosInmuebleDetallado.deleteById(codigDetallesGastInmue);
     }
 
@@ -38,5 +38,10 @@ public class GastosInmuebleDetalladoImpl implements GastosInmuebleDetalladoServi
     public List<DetallesGastosInmueble> listaDetallesActuales(GastosInmueble nroRecibo) {
         return (List<DetallesGastosInmueble>)gastosInmuebleDetallado.findByCodigGastosInmueble(nroRecibo);
 
+    }
+
+    @Override
+    public DetallesGastosInmueble buscarDetallesGastosInmueblePorId(Long codigDetallesGastInmue) {
+        return gastosInmuebleDetallado.findById(codigDetallesGastInmue).get();
     }
 }

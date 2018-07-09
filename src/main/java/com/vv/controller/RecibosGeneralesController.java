@@ -26,9 +26,12 @@ public class RecibosGeneralesController {
     @RequestMapping(value="/",method=RequestMethod.GET )
     public ModelAndView inicioRecibosGenerales(){
         ModelAndView model = new ModelAndView("listaRecibosGenerales");
-        List<GastosInmueble> listaGastosInmueble;
-        listaGastosInmueble = gastosInmuebleService.obtenerListaGastosInmuebleNoFinalizados();
-        model.addObject("listaReciboNoGenerados",listaGastosInmueble);
+        List<GastosInmueble> listaGastosInmuebleNoFinalizados;
+        listaGastosInmuebleNoFinalizados = gastosInmuebleService.obtenerListaGastosInmuebleNoFinalizados();
+        List<GastosInmueble> listaGastosInmuebleFinalizados;
+        listaGastosInmuebleFinalizados = gastosInmuebleService.obtenerListaGastosInmuebleFinalizados();
+        model.addObject("listaRecibosNoGenerados",listaGastosInmuebleNoFinalizados);
+        model.addObject("listaRecibosFinalizados",listaGastosInmuebleFinalizados);
         model.addObject("GastosInmuebleForm",new GastosInmueble());
         return model;
     }

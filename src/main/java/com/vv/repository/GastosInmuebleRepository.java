@@ -11,4 +11,6 @@ public interface GastosInmuebleRepository extends CrudRepository <GastosInmueble
 
    List<GastosInmueble> findByIsGeneradoFalse();
 
+   List<GastosInmueble> findByIsGeneradoTrue();
+
 }
