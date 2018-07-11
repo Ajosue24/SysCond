@@ -267,8 +267,18 @@
 <script src="../../js/jquery.autocomplete.js"></script>
 <script>
     function loadItem() {
-        $("#item").load("refreshItem");
+        $("#item").load('refreshItem');
     }
+    $('#descrGastosInmueble').blur(function(){
+        if($('#descrGastosInmueble').val().length > 3){
+        updateEventCount();
+        }
+    });
+    $("#fechaGastosInmueble").blur(function(){
+        if($('#descrGastosInmueble').val().length > 3){
+            updateEventCount();
+        }
+    });
 
     function updateEventCount() {
         var descrGI = $("#descrGastosInmueble").val();
@@ -286,7 +296,6 @@
             }
         });
     }
-
     //ejemplo Ajax
     /*    function updateEventCount() {
             var codigo = $("#codigGM").val();

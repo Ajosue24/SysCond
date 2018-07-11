@@ -8,42 +8,46 @@
 <body>
 <div th:fragment="modalCrearRM" class="col-md-3 left_col">
     <div id="modalEx">
-    <!--/*@thymesVar id="GastosInmuebleForm" type="com.vv.model.GastosInmueble"*/-->
-    <form id="addGastosForm" action="#" th:action="@{/recibosGenerales/crearNuevoRecibo}" th:object="${GastosInmuebleForm}" method="post">
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                    <div class="form-group">
-                        <input type="hidden" th:field="*{codigGastosInmueble}" />
-                        <label class="control-label col-md-1 col-sm-3 col-xs-12" id="GastosInmueble" th:text="*{codigGastosInmueble}"></label>
+        <!--/*@thymesVar id="GastosInmuebleForm" type="com.vv.model.GastosInmueble"*/-->
+        <form id="addGastosForm" action="#" th:action="@{/recibosGenerales/crearNuevoRecibo}"
+              th:object="${GastosInmuebleForm}" method="post">
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <input type="hidden" th:field="*{codigGastosInmueble}"/>
+                                <label class="control-label col-md-1 col-sm-3 col-xs-12" id="GastosInmueble"
+                                       th:text="*{codigGastosInmueble}"></label>
 
-                    </div>
-                    <div class="form-group">
-                        <label th:for="comentarioGM">Comentario</label>
-                        <textarea th:id="comentarioGM"
-                                  class="form-control"
-                                  th:name="comentarioGM"
-                                  style="max-width: 100%;"
-                                  th:field="*{condCondominio}"></textarea>
-                        <p th:if="${#fields.hasErrors('codigGastosInmueble')}" class="label label-danger" th:errors="*{codigGastosInmueble}">Incorrect LP</p>
-                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label th:for="comentarioGM">Comentario</label>
+                                <textarea th:id="comentarioGM"
+                                          class="form-control"
+                                          th:name="comentarioGM"
+                                          style="max-width: 100%;"
+                                          th:field="*{condCondominio}"></textarea>
+                                <p th:if="${#fields.hasErrors('codigGastosInmueble')}" class="label label-danger"
+                                   th:errors="*{codigGastosInmueble}">Incorrect LP</p>
+                            </div>
 
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" th:type="submit">Send message</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" th:type="submit">Send message</button>
-            </div>
-        </div>
-    </div>
-</div>
-    </form>
+        </form>
     </div>
 </div>
 </body>

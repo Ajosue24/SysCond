@@ -1,6 +1,7 @@
 package com.vv.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -24,8 +25,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
    /* @Autowired
     private DataSource dataSource;*/
 
+
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+        /*auth.jdbcAuthentication().dataSource(dataSource)
+                .usersByUsernameQuery("select nombre_usuario,password, enabled from users where nombre_usuario=?")
+                .authoritiesByUsernameQuery("select nombre_usuario, role from user_roles where nombre_usuario=?");*/
 
        /* //login con db
         auth.jdbcAuthentication().dataSource(dataSource)
@@ -35,6 +41,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                         + "from authorities where username=?")
                 .passwordEncoder(new BCryptPasswordEncoder());*/
 
+           /* //login con db
+        auth.jdbcAuthentication().dataSource(dataSource)
+                .usersByUsernameQuery("select username, password, enabled"
+                        + " from users where username=?")
+                .authoritiesByUsernameQuery(" select username, authority "
+                        + "from authorities where username=?")
+                .passwordEncoder(new BCryptPasswordEncoder());*/
 
 
          auth.inMemoryAuthentication()
@@ -45,6 +58,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+/*original funcionando
         http.authorizeRequests().antMatchers("/").hasAnyRole("ADMIN")
                 .and()
                 .formLogin()
@@ -52,6 +66,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .and()
                 .csrf().disable();
+*/
+        http.authorizeRequests().
+                antMatchers("/admin**").
+                hasAnyRole("ADMIN").
+                and().
+                formLogin().
+                loginPage("/login").
+                defaultSuccessUrl("/index").
+                failureUrl("/login?error").
+                usernameParameter("username").
+                passwordParameter("password").
+                and().
+                logout().
+                logoutSuccessUrl("/login?logout").
+                deleteCookies("JSESSIONID").
+                and().
+                sessionManagement().
+                maximumSessions(1).
+                expiredUrl("/401");
 
 
                 //JDBC
@@ -64,4 +97,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .and()
                 .csrf().disable();*/
     }
+
+
 }
