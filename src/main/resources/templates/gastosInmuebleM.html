@@ -12,6 +12,8 @@
     <div class="main_container">
         <div th:replace="staticTemplates/header :: leftMenu"/>
         <div th:replace="staticTemplates/header :: TopMenu"/>
+        <link rel="stylesheet" th:href="@{/css/gastosInmuebleM.css}"
+              href="../../css/gastosInmuebleM.css" />
         <div class="right_col" role="main" style="min-height: 1655px;">
             <!--contenido de la pagina-->
             <div class="">
@@ -121,11 +123,11 @@
                                                     <label th:for="descGM">Descripcion/Gasto * :</label>
                                                     <input type="text" th:id="descGM" class="form-control" name="descGM"
                                                            th:field="*{codigGastos.descrGastos}"
-                                                           placeholder="Gasto" required/>
+                                                           placeholder="Nombre del gasto" required/>
                                                 </div>
                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                     <label th:for="detallesGastoInmueble">Comentario</label>
-                                                    <textarea th:id="detallesGastoInmueble" required="required"
+                                                    <textarea th:id="detallesGastoInmueble"
                                                               th:name="detallesGastoInmueble"
                                                               class="form-control"
                                                               style="max-width: 100%;"
