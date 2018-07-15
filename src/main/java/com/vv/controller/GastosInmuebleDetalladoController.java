@@ -122,7 +122,7 @@ for(DetallesGastosInmueble listaGastosInmuebleD:listaDetallesGastosInmuebles){
             return model;
         }
         listaDetallesGastosInmuebles= gastosDetalladosService.listaDetallesActuales(gastosInmueble);
-        model.addObject("gastosInmueble",gastosInmueble);
+        model.addObject("gastosInmueble",gastosInmuebleService.obtenerGastoInmuebleSiNofinalizado());
         model.addObject("listadoGastos",listaDetallesGastosInmuebles);
         model.addObject("formDetallesGastosInmueble",new DetallesGastosInmueble());
 
