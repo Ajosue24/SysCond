@@ -270,12 +270,12 @@
         $("#item").load('refreshItem');
     }
     $('#descrGastosInmueble').blur(function(){
-        if($('#descrGastosInmueble').val().length > 3){
+        if($('#descrGastosInmueble').val().length > 3 && $('#fechaGastosInmueble').val().length > 3){
         updateEventCount();
         }
     });
     $("#fechaGastosInmueble").blur(function(){
-        if($('#descrGastosInmueble').val().length > 3){
+        if($('#descrGastosInmueble').val().length > 3 && $('#fechaGastosInmueble').val().length > 3 ){
             updateEventCount();
         }
     });
