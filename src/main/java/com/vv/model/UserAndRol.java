@@ -1,15 +1,16 @@
 package com.vv.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="usuario_sistema")
 public class UserAndRol {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
     @Column(name="user_id")
-    long idUsuario;
+    String idUsuario;
     @Column(name="nombre_usuario")
     String nombreUsuario;
     @Column(name="password")
@@ -35,11 +36,11 @@ public class UserAndRol {
         this.password = password;
     }
 
-    public long getIdUsuario() {
+    public String getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(long idUsuario) {
+    public void setIdUsuario(String idUsuario) {
         this.idUsuario = idUsuario;
     }
 

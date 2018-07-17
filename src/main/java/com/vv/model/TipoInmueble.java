@@ -13,6 +13,9 @@ public class TipoInmueble {
     @Column(name="descr_tipo_inmueble")
     String descrTipoInmueble;
 
+    @OneToMany
+
+
     public long getCodigTipoInmueble() {
         return codigTipoInmueble;
     }

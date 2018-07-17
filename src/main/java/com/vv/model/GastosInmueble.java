@@ -38,6 +38,9 @@ public class GastosInmueble {
     @OneToMany(mappedBy = "codigGastosInmueble", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<DetallesGastosInmueble> detallesGastosInmueble;
 
+    @OneToMany(mappedBy = "codigGastosInmueble", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<MovimientosInmuebles> movimientosInmuebles;
+
     public long getCodigGastosInmueble() {
         return codigGastosInmueble;
     }
@@ -84,14 +87,6 @@ public class GastosInmueble {
 
     public void setCondCondominio(Long condCondominio) {
         this.condCondominio = condCondominio;
-    }
-
-    public List<DetallesGastosInmueble> getDetallesGastosInmueble() {
-        return detallesGastosInmueble;
-    }
-
-    public void setDetallesGastosInmueble(List<DetallesGastosInmueble> detallesGastosInmueble) {
-        this.detallesGastosInmueble = detallesGastosInmueble;
     }
 
     public Boolean getGenerado() {

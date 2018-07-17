@@ -42,4 +42,5 @@ private List<DetallesGastosInmueble> detallesGastosInmuebles;
     public void setIsfijo(Boolean isfijo) {
         this.isfijo = isfijo;
     }
+
 }
