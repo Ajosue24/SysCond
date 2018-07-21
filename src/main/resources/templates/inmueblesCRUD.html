@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Inmuebles VVSYSCOND</title>
+    <div th:replace="/staticTemplates/list_import :: listCss"/>
+
+</head>
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <div th:replace="/staticTemplates/header :: leftMenu"/>
+        <div th:replace="/staticTemplates/header :: TopMenu"/>
+        <div class="right_col" role="main" style="min-height: 1655px;">
+            <!--contenido de la pagina-->
+            <div class="">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3>Administrador Inmueble</h3>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <!--inicio Formulario-->
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Agregar / Editar Inmueble <small>Administre Inmuebles</small></h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <br />
+                                <!--/*@thymesVar id="gastosForm" type="com.vv.model.Inmueble"*/-->
+                                <form id="inmueblesForm" data-parsley-validate class="form-horizontal form-label-left" action="#" th:action="@{/inmuebles/guardarInmueble}" th:object="${inmueblesForm}" method="post">
+                                    <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                        <label th:for="codigInmueble">Ingrese Codigo Inmueble *:</label>
+                                        <input th:id="codigInmueble" th:name="codigInmueble" class="form-control" type="text" placeholder="Nombre o Codigo Inmueble" th:value="*{codigInmueble}" required>
+                                        <p th:if="${#fields.hasErrors('codigInmueble')}"
+                                           class="label label-danger" th:errors="*{codigInmueble}">Incorrect
+                                            </p>
+                                    </div>
+                                    <div class="pull-right" id="Alicuota" >
+                                        <label th:for="alicuota">Ingrese Alicuota:</label>
+                                            <input th:id="alicuota" th:name="alicuota" class="form-control" type="number" placeholder="Alicuota" th:value="*{alicuota}" required>
+                                    </div>
+                                    <div class="col-md-10 col-sm-12 col-xs-12 form-group">
+                                        <label th:for="descrInmueble">Descripcion Inmueble:</label>
+                                        <textarea th:name="descrInmueble" th:id="descrInmueble" class="form-control" type="text" placeholder="Descripcion Inmueble" th:text="*{descrInmueble}"></textarea>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                        <label th:for="codigTipoInmueble">Seleccione Tipo Inmueble:</label>
+                                    <select class="form-control" th:id="codigTipoInmueble" th:name="codigTipoInmueble" th:field="*{codigTipoInmueble}" required="">
+                                        <option th:value="NULL" th:text="Seleccione... "></option>
+                                        <option th:each="tipoInmueble : ${listaTipoInmueble}"
+                                                th:value="${tipoInmueble.codigTipoInmueble}"
+                                                th:text="${tipoInmueble.descrTipoInmueble}"/>
+                                    </select>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                            <button th:type="submit" th:id="cancel" class="btn btn-primary" type="reset" th:name="action" th:value="cancel">Cancel</button>
+                                            <button th:type="submit" th:id="save"   class="btn btn-success" th:name="action" th:value="save">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                                    <div class="x_panel">
+                                        <div class="x_title">
+                                            <h2>Tabla Gastos<small>Edite o consulte gastos registrados</small></h2>
+                                            <ul class="nav navbar-right panel_toolbox">
+                                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="x_content">
+                                            <p class="text-muted font-13 m-b-30">
+                                                Seleccione el gasto que desee editar
+                                            </p>
+
+                                            <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                                                <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Descripción</th>
+                                                    <th>Fijo</th>
+                                                    <th>Editar/Borrar</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr th:each="inmuebles : ${listaInmuebles}" >
+                                                        <!--/*@thymesVar id="inmuebles" type="com.vv.model.Inmueble"*/-->
+                                                        <td th:text="${inmuebles.codigInmueble}"></td>
+                                                        <td th:text="${inmuebles.codigTipoInmueble.descrTipoInmueble}"></td>
+                                                        <td th:text="${inmuebles.descrInmueble}"></td>
+                                                        <td th:text="${inmuebles.alicuota}"></td>
+                                                        <td>
+                                                            <a th:href="@{/inmuebles/actualizarInmueble/} + ${inmuebles.codigInmueble}" class="btn btn-round btn-info btn-xs"><i class="fa fa-wrench"></i> Editar </a></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                </div>
+            </div>
+
+            <a href="logout">Logout</a>
+            <!--/contenido de la pagina-->
+        </div>
+    </div>
+</div>
+
+<div th:replace="/staticTemplates/list_import :: ListJs"/>
+<!-- Datatables -->
+<script src="../../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="../../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="../../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="../../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+<script src="../../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+<script src="../../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="../../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="../../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+<script src="../../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+<script src="../../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+<script src="../../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+<script src="../../vendors/jszip/dist/jszip.min.js"></script>
+<script src="../../vendors/pdfmake/build/pdfmake.min.js"></script>
+<script src="../../vendors/pdfmake/build/vfs_fonts.js"></script>
+</body>
+</html>

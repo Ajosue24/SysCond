@@ -8,7 +8,7 @@ import java.util.List;
 public class Inmueble {
 
     @Id
-    @Column(name = "codig_inmueble")
+    @Column(name = "codig_inmueble",unique=true)
     String codigInmueble;
 
     @ManyToOne
@@ -19,7 +19,7 @@ public class Inmueble {
     String descrInmueble;
 
     @Column(name = "alicu_inmuebles")
-    Double Alicuota;
+    Double alicuota;
 
     @Column(name = "id_propietario")
     Integer idPropietario;
@@ -47,11 +47,11 @@ public class Inmueble {
     }
 
     public Double getAlicuota() {
-        return Alicuota;
+        return alicuota;
     }
 
     public void setAlicuota(Double alicuota) {
-        Alicuota = alicuota;
+        this.alicuota = alicuota;
     }
 
     public Integer getIdPropietario() {
