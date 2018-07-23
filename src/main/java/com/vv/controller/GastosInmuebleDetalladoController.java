@@ -108,9 +108,10 @@ for(DetallesGastosInmueble listaGastosInmuebleD:listaDetallesGastosInmuebles){
                 gastosDetalladosService.actualizaYGuardaGastoDetallado(detallesGastosInmueble);
                /* gastosInmuebleService.guardarActualizarGastoInmueble(gastosInmueble);*/
             }else{
-            /*    gastosInmueble.setCondCondominio(1l);
+              gastosInmueble.setCondCondominio(1l);
                 gastosInmueble.setGenerado(true);
-                gastosInmuebleService.guardarActualizarGastoInmueble(gastosInmueble);*/
+                gastosInmuebleService.guardarActualizarGastoInmueble(gastosInmueble);
+
             }
 
         }catch (DataIntegrityViolationException e){
