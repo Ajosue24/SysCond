@@ -1,6 +1,8 @@
 package com.vv.repository;
 
-public interface MovimientosInmuebleRepository {
+import com.vv.model.MovimientosInmuebles;
+import org.springframework.data.repository.CrudRepository;
 
-    String registrarRecibosPorInmueble();
+public interface MovimientosInmuebleRepository extends CrudRepository<MovimientosInmuebles,Long> {
+
 }

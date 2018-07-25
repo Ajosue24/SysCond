@@ -1,13 +1,12 @@
 package com.vv.controller;
 
 
-import com.vv.model.DetallesGastosInmueble;
-import com.vv.model.Gastos;
-import com.vv.model.GastosInmueble;
-import com.vv.model.Item;
+import com.vv.model.*;
 import com.vv.repository.GastosInmuebleDetalladoRepository;
 import com.vv.service.GastosInmuebleDetalladoService;
 import com.vv.service.GastosInmuebleService;
+import com.vv.service.InmuebleService;
+import com.vv.service.MovimientosInmuebleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -34,6 +33,12 @@ public class GastosInmuebleDetalladoController {
 
     @Autowired
     GastosInmuebleDetalladoService gastosDetalladosService;
+
+    @Autowired
+    InmuebleService inmuebleService;
+
+    @Autowired
+    MovimientosInmuebleService movimientosInmuebleService;
 
     private GastosInmueble gastosInmueble;
 
@@ -111,7 +116,14 @@ for(DetallesGastosInmueble listaGastosInmuebleD:listaDetallesGastosInmuebles){
               gastosInmueble.setCondCondominio(1l);
                 gastosInmueble.setGenerado(true);
                 gastosInmuebleService.guardarActualizarGastoInmueble(gastosInmueble);
-
+                List<Inmueble> listaInmuebles= inmuebleService.obtenerListaInmuebles();
+                try {
+                    for(Inmueble inmueble:listaInmuebles){
+                        registrarPorCadaInmueble(inmueble);
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
             }
 
         }catch (DataIntegrityViolationException e){
@@ -156,6 +168,16 @@ return  model;
         model.addObject("formDetallesGastosInmueble",new DetallesGastosInmueble());
         return model;
 
+    }
+
+    private void registrarPorCadaInmueble(Inmueble inmueble){
+        MovimientosInmuebles movimientosInmuebles = new MovimientosInmuebles();
+        movimientosInmuebles.setCodigGastosInmueble(gastosInmueble);
+        movimientosInmuebles.setCodigInmueble(inmueble);
+        movimientosInmuebles.setFechaMov(gastosInmueble.getFechaGastosInmueble());
+        movimientosInmuebles.setMontoMensualMov(gastosInmueble.getMontoTotalGastosInmueble());
+        movimientosInmuebles.setIfCancelado(false);
+        movimientosInmuebleService.guardarMovimientosInmueble(movimientosInmuebles);
     }
 
 }

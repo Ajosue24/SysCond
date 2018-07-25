@@ -18,6 +18,7 @@ public class GastosInmuebleImpl implements GastosInmuebleService{
     GastosInmuebleRepository gastosInmuebleRepository;
 
 
+
     @Override
     public void guardarActualizarGastoInmueble(GastosInmueble gastosInmueble) {
         gastosInmuebleRepository.save(gastosInmueble);
