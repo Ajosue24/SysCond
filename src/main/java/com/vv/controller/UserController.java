@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.*;
+
 import java.security.Principal;
 
 /**
@@ -24,6 +26,7 @@ public class UserController {
 
     @GetMapping("/index")
     public String index() {
+
         return "index";
     }
 
@@ -57,5 +60,6 @@ public class UserController {
 
         return model;
     }
+
 }
 
