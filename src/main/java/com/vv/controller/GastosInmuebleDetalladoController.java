@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Null;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -61,9 +62,6 @@ public class GastosInmuebleDetalladoController {
            listaDetallesGastosInmuebles = gastosDetalladosService.listaDetallesActuales(gastosInmueble);
 
        }
-for(DetallesGastosInmueble listaGastosInmuebleD:listaDetallesGastosInmuebles){
-    gastosInmueble.setMontoSubTotalGastosInmueble(listaGastosInmuebleD.getMontoGasto());
-}
 
         //fin lista
         model.addObject("gastosInmueble",gastosInmueble);
@@ -85,14 +83,6 @@ for(DetallesGastosInmueble listaGastosInmuebleD:listaDetallesGastosInmuebles){
     }*/
 
 
-    @RequestMapping(value = "/refreshNombreFecha", method = RequestMethod.GET)
-    public String refreshNombreFecha(@RequestParam("descrGastosInmueble") String descrGastosInmueble, Model model) {
-        GastosInmueble item = new GastosInmueble();
-        item.setDescrGastosInmueble("prueba");
-        item.setFechaGastosInmueble(new Date());
-        model.addAttribute("gastosInmueble", item);
-        return "gastosInmuebleM :: #gastosInmuebleHeader";
-    }
 
     @RequestMapping(value = "/guardarGastosM",method = RequestMethod.POST)
     public ModelAndView guardarGastosM(@Valid @ModelAttribute("formDetallesGastosInmueble") DetallesGastosInmueble detallesGastosInmueble,
@@ -109,7 +99,10 @@ for(DetallesGastosInmueble listaGastosInmuebleD:listaDetallesGastosInmuebles){
             if(finalizarG == null){
                 gastosInmueble.setCondCondominio(1l);
                 gastosInmueble.setGenerado(false);
-                 detallesGastosInmueble.setCodigGastosInmueble(gastosInmueble);
+                //Actualizar monto
+                gastosInmueble.setMontoSubTotalGastosInmueble(gastosInmueble.getMontoSubTotalGastosInmueble()== null?detallesGastosInmueble.getMontoGasto():gastosInmueble.getMontoSubTotalGastosInmueble()+detallesGastosInmueble.getMontoGasto());
+                gastosInmuebleService.guardarActualizarGastoInmueble(gastosInmueble);
+                detallesGastosInmueble.setCodigGastosInmueble(gastosInmueble);
                 gastosDetalladosService.actualizaYGuardaGastoDetallado(detallesGastosInmueble);
                /* gastosInmuebleService.guardarActualizarGastoInmueble(gastosInmueble);*/
             }else{
@@ -124,6 +117,7 @@ for(DetallesGastosInmueble listaGastosInmuebleD:listaDetallesGastosInmuebles){
                 }catch (Exception e){
                     e.printStackTrace();
                 }
+                return getPages();
             }
 
         }catch (DataIntegrityViolationException e){
@@ -161,9 +155,19 @@ return  model;
     @RequestMapping(value="/borrarGastosDetallados/{id}",method=RequestMethod.GET )
     public ModelAndView borrarGastosDetallados(@PathVariable long id) {
         ModelAndView model = new ModelAndView("gastosInmuebleM");
+        GastosInmueble gi = new GastosInmueble();
+        //actualizo monto sub total
+        gi = gastosInmuebleService.obtenerGastoInmuebleSiNofinalizado();
+        try{
+            gi.setMontoSubTotalGastosInmueble(gi.getMontoSubTotalGastosInmueble() - gastosDetalladosService.buscarDetallesGastosInmueblePorId(id).getMontoGasto());
+        }catch (NullPointerException e){
+            gi.setMontoSubTotalGastosInmueble(0.00);
+        }
+
+        gastosInmuebleService.guardarActualizarGastoInmueble(gi);
         gastosDetalladosService.eliminarGastoDetallado(id);
         List<DetallesGastosInmueble> listaDetallesGastosInmuebles = gastosDetalladosService.listaDetallesActuales(gastosInmueble);
-        model.addObject("gastosInmueble",gastosInmueble);
+        model.addObject("gastosInmueble",gi);
         model.addObject("listadoGastos",listaDetallesGastosInmuebles);
         model.addObject("formDetallesGastosInmueble",new DetallesGastosInmueble());
         return model;
@@ -175,7 +179,7 @@ return  model;
         movimientosInmuebles.setCodigGastosInmueble(gastosInmueble);
         movimientosInmuebles.setCodigInmueble(inmueble);
         movimientosInmuebles.setFechaMov(gastosInmueble.getFechaGastosInmueble());
-        movimientosInmuebles.setMontoMensualMov(gastosInmueble.getMontoTotalGastosInmueble());
+        movimientosInmuebles.setMontoMensualMov(gastosInmueble.getMontoSubTotalGastosInmueble());
         movimientosInmuebles.setIfCancelado(false);
         movimientosInmuebleService.guardarMovimientosInmueble(movimientosInmuebles);
     }

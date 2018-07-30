@@ -61,11 +61,53 @@
 
      <!--PDF-->
      <dependency>
-         <groupId>com.itextpdf</groupId>
-         <artifactId>itextpdf</artifactId>
-         <version>5.5.13</version>
+         <groupId>net.sf.jtidy</groupId>
+         <artifactId>jtidy</artifactId>
+         <version>r938</version>
+         <scope>compile</scope>
+     </dependency>
+     <dependency>
+         <groupId>org.xhtmlrenderer</groupId>
+         <artifactId>flying-saucer-pdf-itext5</artifactId>
+         <version>9.1.6</version>
+         <scope>compile</scope>
+     </dependency>
+     <dependency>
+         <groupId>org.xhtmlrenderer</groupId>
+         <artifactId>flying-saucer-core</artifactId>
+         <version>9.1.6</version>
+         <scope>compile</scope>
+     </dependency>
+     <dependency>
+         <groupId>com.fasterxml.jackson.core</groupId>
+         <artifactId>jackson-databind</artifactId>
+         <version>2.9.4</version>
+         <scope>compile</scope>
+     </dependency>
+     <dependency>
+         <groupId>com.github.jknack</groupId>
+         <artifactId>handlebars</artifactId>
+         <version>4.0.6</version>
+         <scope>compile</scope>
+     </dependency>
+     <dependency>
+         <groupId>org.thymeleaf</groupId>
+         <artifactId>thymeleaf</artifactId>
+         <version>3.0.9.RELEASE</version>
+         <scope>compile</scope>
      </dependency>
      <!--finPDF-->
+     <!--Lib para pruebas-->
+     <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+     <dependency>
+         <groupId>junit</groupId>
+         <artifactId>junit</artifactId>
+         <version>4.12</version>
+         <scope>test</scope>
+     </dependency>
+
+
+     <!--fin de lib para pruebas-->
      <!-- holamundo -->
    <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
     <dependency>
@@ -153,6 +195,22 @@
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity4</artifactId>
 		</dependency>
+     <dependency>
+         <groupId>org.testng</groupId>
+         <artifactId>testng</artifactId>
+         <version>RELEASE</version>
+         <scope>compile</scope>
+     </dependency>
+     <dependency>
+         <groupId>org.junit.jupiter</groupId>
+         <artifactId>junit-jupiter-api</artifactId>
+         <version>RELEASE</version>
+         <scope>compile</scope>
+     </dependency>
+     <dependency>
+         <groupId>junit</groupId>
+         <artifactId>junit</artifactId>
+     </dependency>
  </dependencies>
 
  <build>

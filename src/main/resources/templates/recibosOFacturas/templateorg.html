@@ -5,15 +5,13 @@
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>prueba</title>
-        <link rel="stylesheet" th:href="@{/css/recibosOFacturas.css}"
-              href="../../css/recibosOFacturas.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="staticTemplates/style.css"/>
     </head>
 
     <body>
-        <div class='header' th:include="recibosOFacturas/header::header"></div>
+        <div class='header' th:include="staticTemplates/header::header"></div>
 
-        <div th:include="recibosOFacturas/letterhead::letterhead"></div>
+        <div th:include="staticTemplates/letterhead::letterhead"></div>
 
         <h1>YOUR EXAMPLE THYMELEAF PDF</h1>
 
@@ -37,7 +35,7 @@
 
         <p><b>You find more information on the second page.</b></p>
 
-        <div class='footer' th:include="recibosOFacturas/footer::footer"></div>
+        <div class='footer' th:include="staticTemplates/footer::footer"></div>
 
         <div class="next-page">
 
@@ -69,7 +67,7 @@
                 takimata sanctus est Lorem ipsum dolor sit amet.</p>
         </div>
 
-        <div class='footer' th:include="recibosOFacturas/footer::footer"></div>
+        <div class='footer' th:include="staticTemplates/footer::footer"></div>
     </body>
 
 </html>

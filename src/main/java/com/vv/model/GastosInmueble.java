@@ -35,7 +35,7 @@ public class GastosInmueble {
     @Column(name="if_generado", columnDefinition="BOOLEAN DEFAULT false")
     Boolean isGenerado;
 
-    @OneToMany(mappedBy = "codigGastosInmueble", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "codigGastosInmueble", fetch = FetchType.EAGER)
     private List<DetallesGastosInmueble> detallesGastosInmueble;
 
     @OneToMany(mappedBy = "codigGastosInmueble", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

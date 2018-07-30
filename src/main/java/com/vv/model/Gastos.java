@@ -16,7 +16,7 @@ public class Gastos {
     Boolean isfijo;
 
     //uno a muchos con la tabla detalles gasto inmueble
-    @OneToMany(mappedBy = "codigGastos", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "codigGastos", fetch = FetchType.EAGER)
 private List<DetallesGastosInmueble> detallesGastosInmuebles;
 
     public long getCodigGastos() {

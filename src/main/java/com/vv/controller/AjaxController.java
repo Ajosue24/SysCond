@@ -43,6 +43,7 @@ public class AjaxController {
     @RequestMapping(value = "refreshNombreFecha/{descrGI}/{fecha}/{codigGI}", method = RequestMethod.GET,produces = {MimeTypeUtils.APPLICATION_JSON_VALUE})
     public ResponseEntity <GastosInmueble> refreshNombreFecha(@PathVariable("descrGI") String descrGI,@PathVariable("fecha") String fecha,@PathVariable("codigGI") String codigGI){
         GastosInmueble gastosInmueble= new GastosInmueble();
+        gastosInmueble = gastosInmuebleService.obtenerGastoInmuebleSiNofinalizado();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         try {
             gastosInmueble.setFechaGastosInmueble(formatter.parse(fecha));
@@ -52,8 +53,6 @@ public class AjaxController {
 
         gastosInmueble.setDescrGastosInmueble(descrGI.trim());
         gastosInmueble.setCodigGastosInmueble(Long.parseLong(codigGI));
-        gastosInmueble.setGenerado(false);
-        gastosInmueble.setCondCondominio(1l);
         gastosInmuebleService.guardarActualizarGastoInmueble(gastosInmueble);
 
         try {
