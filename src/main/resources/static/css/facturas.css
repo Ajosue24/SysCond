@@ -1,0 +1,27 @@
+@charset "utf-8";
+.contenido .totales .detTotales {
+	float: left;
+}
+.contenido .totales .detInmueble {
+	float: left;
+}
+.cuerpo .cabezera p {
+	float: left;
+
+}
+.cuerpo .cabezera .datosCondominio {
+	float: left;
+}
+tr td #titulo {
+
+
+}
+tr td .detInmueble {
+	opacity: 1;
+	border-collapse: collapse;
+}
+
+tr td .detTotales {
+	opacity: 1;
+	border-collapse: collapse;
+}

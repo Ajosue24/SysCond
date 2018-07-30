@@ -109,7 +109,7 @@ public class RecibosOFacturas {
         // directory.
         String baseUrl = FileSystems
                 .getDefault()
-                .getPath("src", "test", "resources")
+                .getPath("src", "main", "resources")
                 .toUri()
                 .toURL()
                 .toString();

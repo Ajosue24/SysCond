@@ -1,147 +1,161 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>FormatoFactura</title>
+    <link href="../../css/facturas.css" rel="stylesheet" type="text/css">
+</head>
 
-    <head>
-        <meta charset="utf-8"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>recibo</title>
-        <link href="../../css/recibosOFacturas.css" rel="stylesheet">
-        <link href="../../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    </head>
-
-    <body>
-        <div class='header' th:include="recibosOFacturas/header::header"></div>
-
-        <div th:include="recibosOFacturas/letterhead::letterhead"></div>
-
-        <h1>Recibo Mensual</h1>
-
-        <p>Sr [[${data.getFirstname()}]] [[${data.getLastname()}]],</p>
-
-        <table cellspacing="0" width="100%">
-            <thead>
-            <tr>
-                <th>Codig</th>
-                <th>Gasto</th>
-                <th>Descripcion</th>
-                <th>Monto</th>
-                <th>Alicuota</th>
-            </tr>
-            </thead>
+<body>
+<div class="cuerpo">
+    <div class="cabezera">
+        <table width="100%" >
             <tbody>
             <tr>
-                <td>texto</td>
-                <td>texto</td>
-                <td>texto</td>
-                <td>texto</td>
-                <td>texto</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <table id="gastoIndividual" cellspacing="0" width="100%">
-            <thead>
-            <tr>
-                <th>Codig</th>
-                <th>Gasto</th>
-                <th>Descripcion</th>
-                <th>Monto</th>
-                <th>Alicuota</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>texto</td>
-                <td>texto</td>
-                <td>texto</td>
-                <td>texto</td>
-                <td>texto</td>
-            </tr>
-            </tbody>
-        </table>
-        <div class="row">
-        <small class="pull-right">
-            <div class="col-md-4 col-sm-4 col-xs-12">
-                <table>
+                <td width="34%"><table class="datosCondominio" width="150" >
                     <tbody>
                     <tr>
-                        <td>TOTAL GASTOS GENERALES</td>
-                        <td>BS Variable</td>
+                        <td>logsssssssssssssssssssso</td>
+                        <td><strong>Nombre Edificio</strong><br>
+                            Direccion
+                            Mas direccion<br>
+                            <br>
+                            <b>Telefono:</b> 0212 936 00 06<br>
+                            <b>Correo:</b> josue24664@hotmail.com<br></td>
                     </tr>
                     </tbody>
-                </table>
-            </div>
-        </small>
-        </div>
-<div class="row">
-    <div class="col-md-4 col-sm-4 col-xs-12">
-        <table>
-            <thead>
-            <tr>
-                <th>Estado de cuenta Propietario</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>SALDO ANTERIOR</td>
-                <td>BS Variable</td>
-            </tr>
-            <tr>
-                <td>SALDO ACTUAL</td>
-                <td>BS Variable</td>
-            </tr>
-            <tr>
-                <td>INT. ACUMULADO</td>
-                <td>BS Variable</td>
-            </tr>
-            <tr>
-                <td>INT. DEL MES</td>
-                <td>BS Variable</td>
-            </tr>
-            <tr>
-                <td>REC. PENDIENTE</td>
-                <td>VARIABLE</td>
+                </table></td>
+                <td width="41%"><h2 id="titulo">RECIBO DE CONDOMINIO</h2></td>
+                <td width="25%"><table width="200" >
+                    <tbody>
+                    <tr>
+                        <th scope="row">Número</th>
+                        <td>999999</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Página</th>
+                        <td>999999</td>
+                    </tr>
+                    </tbody>
+                </table></td>
             </tr>
             </tbody>
         </table>
     </div>
-    <div class="col-md-4 col-sm-4 col-xs-12">
-        <table>
-            <thead>
-            <tr>
-                <th>Totales</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>SUB-TOTAL GASTOS COMUNES</td>
-                <td>BS Variable</td>
-            </tr>
-            <tr>
-                <td>SUB TOTAL G INDIVIDUALES</td>
-                <td>BS Variable</td>
-            </tr>
-            <tr>
-                <td>SUB TOTAL FONDOS</td>
-                <td>BS Variable</td>
-            </tr>
-            <tr>
-                <td>TOTAL A CANCELAR</td>
-                <td>BS Variable</td>
-            </tr>
-            <tr>
-                <td>REC. PENDIENTE</td>
-                <td>VARIABLE</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-        <div class='footer' th:include="recibosOFacturas/footer::footer"></div>
-        <div th:replace="staticTemplates/list_import :: ListJs"/>
-    </body>
+    <div class="contenido">
+        <div class="inmueble">
+            <table cellspacing="0" width="100%" height="63" border="1">
+                <tbody>
+                <tr>
+                    <th scope="col">Inmueble</th>
+                    <th scope="col">Propietario</th>
+                    <th scope="col">Alicuota</th>
+                    <th scope="col">Fecha</th>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                </tbody>
+            </table></div>
 
+        <div class="detalles">
+            <table class="tablaDetalles" cellspacing="0" width="100%" border="1">
+                <tbody>
+                <tr>
+                    <th scope="col">Cod</th>
+                    <th scope="col">Gasto</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Monto</th>
+                    <th scope="col">Alicuota</th>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                </tbody>
+            </table>
+            <table class="tablaDetalles" cellspacing="0" width="100%" border="1">
+                <tbody>
+                <tr>
+                    <th scope="col">Cod</th>
+                    <th scope="col">Gasto</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Monto</th>
+                    <th scope="col">Alicuota</th>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="totales">
+            <table cellspacing="0" width="100%" >
+                <tbody>
+                <tr>
+                    <td WIDTH="60%">
+                        <table class="detInmueble" width="458" border="1">
+                            <tbody>
+                            <tr>
+                                <th width="210" scope="row">SALDO ANTERIOR</th>
+                                <td width="232">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">SALDO ACTUAL</th>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">INT.ACUMULADO</th>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">INT.DEL MES</th>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">REC.PENDIENTE</th>
+                                <td>&nbsp;</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td WIDTH="40%">
+                        <table class="detTotales"width="509" border="1">
+                            <tbody>
+                            <tr>
+                                <th width="214" scope="row">SUB.T GASTOS COMUNES</th>
+                                <td width="279">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">SUB.T G INDIVIDUALES</th>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">SUB.T FONDOS</th>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">TOTAL A CANCELAR</th>
+                                <td>&nbsp;</td>
+                            </tr>
+                            </tbody>
+                        </table></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+</body>
 </html>
