@@ -1,9 +1,10 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <title>FormatoFactura</title>
-    <link href="../../css/facturas.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css"
+          href="../resources/static/css/facturas.css" />
 </head>
 
 <body>
@@ -15,10 +16,9 @@
                 <td width="34%"><table class="datosCondominio" width="150" >
                     <tbody>
                     <tr>
-                        <td>logsssssssssssssssssssso</td>
+                        <td>IMAGEN LOGOOO</td>
                         <td><strong>Nombre Edificio</strong><br>
-                            Direccion
-                            Mas direccion<br>
+                            Direccion Mas direccion<br>
                             <br>
                             <b>Telefono:</b> 0212 936 00 06<br>
                             <b>Correo:</b> josue24664@hotmail.com<br></td>
@@ -42,6 +42,8 @@
             </tbody>
         </table>
     </div>
+    <br/>
+    <br/>
     <div class="contenido">
         <div class="inmueble">
             <table cellspacing="0" width="100%" height="63" border="1">
@@ -60,7 +62,8 @@
                 </tr>
                 </tbody>
             </table></div>
-
+        <br/>
+        <br/>
         <div class="detalles">
             <table class="tablaDetalles" cellspacing="0" width="100%" border="1">
                 <tbody>
@@ -80,31 +83,15 @@
                 </tr>
                 </tbody>
             </table>
-            <table class="tablaDetalles" cellspacing="0" width="100%" border="1">
-                <tbody>
-                <tr>
-                    <th scope="col">Cod</th>
-                    <th scope="col">Gasto</th>
-                    <th scope="col">Descripcion</th>
-                    <th scope="col">Monto</th>
-                    <th scope="col">Alicuota</th>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                </tbody>
-            </table>
         </div>
+        <br/>
+        <br/>
         <div class="totales">
             <table cellspacing="0" width="100%" >
                 <tbody>
                 <tr>
-                    <td WIDTH="60%">
-                        <table class="detInmueble" width="458" border="1">
+                    <td WIDTH="50%">
+                        <table class="detInmueble" width="80%" border="1">
                             <tbody>
                             <tr>
                                 <th width="210" scope="row">SALDO ANTERIOR</th>
@@ -129,9 +116,13 @@
                             </tbody>
                         </table>
                     </td>
-                    <td WIDTH="40%">
-                        <table class="detTotales"width="509" border="1">
+                    <td WIDTH="50%">
+                        <table class="detTotales" width="100%" border="1">
                             <tbody>
+                            <tr>
+                                <th width="214" scope="row">TOTAL GASTOS</th>
+                                <td width="279">&nbsp;</td>
+                            </tr>
                             <tr>
                                 <th width="214" scope="row">SUB.T GASTOS COMUNES</th>
                                 <td width="279">&nbsp;</td>
