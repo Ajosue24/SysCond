@@ -179,7 +179,7 @@ return  model;
         movimientosInmuebles.setCodigGastosInmueble(gastosInmueble);
         movimientosInmuebles.setCodigInmueble(inmueble);
         movimientosInmuebles.setFechaMov(gastosInmueble.getFechaGastosInmueble());
-        movimientosInmuebles.setMontoMensualMov(gastosInmueble.getMontoSubTotalGastosInmueble());
+        movimientosInmuebles.setMontoMensualMov((gastosInmueble.getMontoSubTotalGastosInmueble()*inmueble.getAlicuota())/100);
         movimientosInmuebles.setIfCancelado(false);
         movimientosInmuebleService.guardarMovimientosInmueble(movimientosInmuebles);
     }
