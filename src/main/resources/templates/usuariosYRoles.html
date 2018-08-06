@@ -39,17 +39,10 @@
                                 <form id="addGastosForm" data-parsley-validate class="form-horizontal form-label-left" action="#" th:action="@{/usuariosYRoles/guardarUsuarioyRol}" th:object="${formUsuariosYRoles}" method="post">
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="idUsuario">ID</label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="hidden" th:field="*{idUsuario}" />
-                                            <label class="control-label col-md-1 col-sm-3 col-xs-12" id="idUsuario" th:text="*{idUsuario}"></label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombreUsuario">Nombre Usuario<span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" id="nombreUsuario" name="nombreUsuario" required="required" class="form-control col-md-7 col-xs-12" th:field="*{nombreUsuario}"/>
+                                            <input type="text" id="nombreUsuario" name="nombreUsuario" required="required" class="form-control col-md-7 col-xs-12" th:field="*{idUsuario}"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -97,16 +90,15 @@
                                     <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                         <thead>
                                         <tr>
-                                            <th>ID</th>
                                             <th>Nombre</th>
                                             <th>Clave</th>
+                                            <th>Habilitado</th>
                                             <th>Editar/Borrar</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr th:each="listaUsuarios : ${listaUsuarios}" >
                                             <td th:text="${listaUsuarios.idUsuario}"></td>
-                                            <td th:text="${listaUsuarios.nombreUsuario}"></td>
                                             <td th:text="${listaUsuarios.password}"></td>
                                             <td th:text="${listaUsuarios.habilitado}"></td>
                                         </tr>
