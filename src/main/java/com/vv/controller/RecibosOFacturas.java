@@ -26,7 +26,7 @@ import static org.thymeleaf.templatemode.TemplateMode.HTML;
 @RequestMapping(value="/recibos")
 public class RecibosOFacturas {
 
-    private static final String OUTPUT_FILE = "test.pdf";
+    private static final String OUTPUT_FILE = "PDF/test.pdf";
     private static final String UTF_8 = "UTF-8";
 
     @RequestMapping(value="/",method=RequestMethod.GET )

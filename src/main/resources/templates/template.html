@@ -30,11 +30,11 @@
                     <tbody>
                     <tr>
                         <th scope="row">Número</th>
-                        <td>999999</td>
+                        <td>[[${data.getNumeroRecibo()}]]</td>
                     </tr>
                     <tr>
                         <th scope="row">Página</th>
-                        <td>999999</td>
+                        <td>1</td>
                     </tr>
                     </tbody>
                 </table></td>
@@ -55,10 +55,10 @@
                     <th scope="col">Fecha</th>
                 </tr>
                 <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td>[[${data.getInmueble()}]]</td>
+                    <td>[[${data.getPropietario()}]]</td>
+                    <td>[[${data.getAlicuota()}]]</td>
+                    <td>[[${data.getFecha()}]]</td>
                 </tr>
                 </tbody>
             </table></div>
@@ -75,11 +75,11 @@
                     <th scope="col">Alicuota</th>
                 </tr>
                 <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td>[[${data.getCodigoGasto()}]]</td>
+                    <td>[[${data.getNombreGasto()}]]</td>
+                    <td>[[${data.getDescripcion()}]]</td>
+                    <td>[[${data.getMontoGasto()}]]</td>
+                    <td>[[${data.getAlicuotaMonto()}]]</td>
                 </tr>
                 </tbody>
             </table>
@@ -121,11 +121,11 @@
                             <tbody>
                             <tr>
                                 <th width="214" scope="row">TOTAL GASTOS</th>
-                                <td width="279">&nbsp;</td>
+                                <td width="279">[[${data.getTotalMontoRecibo()}]]</td>
                             </tr>
                             <tr>
                                 <th width="214" scope="row">SUB.T GASTOS COMUNES</th>
-                                <td width="279">&nbsp;</td>
+                                <td width="279">[[${data.getSubTotalGastos()}]]</td>
                             </tr>
                             <tr>
                                 <th scope="row">SUB.T G INDIVIDUALES</th>
@@ -133,11 +133,11 @@
                             </tr>
                             <tr>
                                 <th scope="row">SUB.T FONDOS</th>
-                                <td>&nbsp;</td>
+                                <td>[[${data.getTotalFondos()}]]</td>
                             </tr>
                             <tr>
                                 <th scope="row">TOTAL A CANCELAR</th>
-                                <td>&nbsp;</td>
+                                <td>[[${data.getTotalCancelar()}]]</td>
                             </tr>
                             </tbody>
                         </table></td>

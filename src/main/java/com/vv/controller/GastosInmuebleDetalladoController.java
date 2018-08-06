@@ -113,6 +113,7 @@ public class GastosInmuebleDetalladoController {
                 try {
                     for(Inmueble inmueble:listaInmuebles){
                         registrarPorCadaInmueble(inmueble);
+
                     }
                 }catch (Exception e){
                     e.printStackTrace();
@@ -173,7 +174,7 @@ return  model;
         return model;
 
     }
-
+//Guarda Informacion del recibo para el inmueble
     private void registrarPorCadaInmueble(Inmueble inmueble){
         MovimientosInmuebles movimientosInmuebles = new MovimientosInmuebles();
         movimientosInmuebles.setCodigGastosInmueble(gastosInmueble);
@@ -183,5 +184,12 @@ return  model;
         movimientosInmuebles.setIfCancelado(false);
         movimientosInmuebleService.guardarMovimientosInmueble(movimientosInmuebles);
     }
+//Genera PDF correspondiente
+private void  generarPDF(MovimientosInmuebles movimientosInmuebles){
+        
+    gastosInmueble;
+    listaDetallesGastosInmuebles;
+    inmueble
 
+}
 }

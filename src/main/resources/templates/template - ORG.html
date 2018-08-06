@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="utf-8" content="text/html"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>recibo</title>
+        <link href="../../css/recibosOFacturas.css" rel="stylesheet" type="text/css">
+    </head>
+
+    <body>
+        <div class='header' th:include="recibosOFacturas/header::header"></div>
+
+        <div th:include="recibosOFacturas/letterhead::letterhead"></div>
+
+        <h1>Recibo Mensual</h1>
+
+        <p>Sr [[${data.getFirstname()}]] [[${data.getLastname()}]],</p>
+
+        <table cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th>Codig</th>
+                <th>Gasto</th>
+                <th>Descripcion</th>
+                <th>Monto</th>
+                <th>Alicuota</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>texto</td>
+                <td>texto</td>
+                <td>texto</td>
+                <td>texto</td>
+                <td>texto</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <table id="gastoIndividual" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th>Codig</th>
+                <th>Gasto</th>
+                <th>Descripcion</th>
+                <th>Monto</th>
+                <th>Alicuota</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>texto</td>
+                <td>texto</td>
+                <td>texto</td>
+                <td>texto</td>
+                <td>texto</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="row">
+        <small class="right">
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <table>
+                    <tbody>
+                    <tr>
+                        <td>TOTAL GASTOS GENERALES</td>
+                        <td>BS Variable</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </small>
+        </div>
+<div>
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th>Estado de cuenta Propietario</th>
+            </tr>
+            <tr>
+                <th>Totales</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>SALDO ANTERIOR</td>
+                <td>BS Variable</td>
+            </tr>
+            <tr>
+                <td>SALDO ACTUAL</td>
+                <td>BS Variable</td>
+            </tr>
+            <tr>
+                <td>INT. ACUMULADO</td>
+                <td>BS Variable</td>
+            </tr>
+            <tr>
+                <td>INT. DEL MES</td>
+                <td>BS Variable</td>
+            </tr>
+            <tr>
+                <td>REC. PENDIENTE</td>
+                <td>VARIABLE</td>
+            </tr>
+            <!--otra tabla alado-->
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th>Totales</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>SUB-TOTAL GASTOS COMUNES</td>
+                <td>BS Variable</td>
+            </tr>
+            <tr>
+                <td>SUB TOTAL G INDIVIDUALES</td>
+                <td>BS Variable</td>
+            </tr>
+            <tr>
+                <td>SUB TOTAL FONDOS</td>
+                <td>BS Variable</td>
+            </tr>
+            <tr>
+                <td>TOTAL A CANCELAR</td>
+                <td>BS Variable</td>
+            </tr>
+            <tr>
+                <td>REC. PENDIENTE</td>
+                <td>VARIABLE</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+        <div class='footer' th:include="recibosOFacturas/footer::footer"></div>
+    </body>
+
+</html>
