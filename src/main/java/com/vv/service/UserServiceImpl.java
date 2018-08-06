@@ -17,7 +17,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserAndRol> listaUsuariosYHablitados(String nombreUsuario, Boolean habilitado) {
-        return (List<UserAndRol>)userRepository.findByNombreUsuarioAndHabilitado(nombreUsuario,habilitado);
+        return (List<UserAndRol>)userRepository.findByIdUsuarioAndHabilitado(nombreUsuario,habilitado);
     }
 
     public void guardarEditarUsuario(UserAndRol usuario){

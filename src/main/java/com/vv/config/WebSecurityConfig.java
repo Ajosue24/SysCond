@@ -22,8 +22,8 @@ import javax.sql.DataSource;
 @EnableGlobalMethodSecurity(securedEnabled=true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
-   /* @Autowired
-    private DataSource dataSource;*/
+    @Autowired
+    private DataSource dataSource;
 
 
 
@@ -33,13 +33,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .usersByUsernameQuery("select nombre_usuario,password, enabled from users where nombre_usuario=?")
                 .authoritiesByUsernameQuery("select nombre_usuario, role from user_roles where nombre_usuario=?");*/
 
-       /* //login con db
+
         auth.jdbcAuthentication().dataSource(dataSource)
-                .usersByUsernameQuery("select username, password, enabled"
-                        + " from users where username=?")
-                .authoritiesByUsernameQuery(" select username, authority "
-                        + "from authorities where username=?")
-                .passwordEncoder(new BCryptPasswordEncoder());*/
+                .usersByUsernameQuery("select user_id, password, habilitado"
+                        + " from usuario_sistema where user_id=?")
+                .authoritiesByUsernameQuery("select user_id, authority "
+                        + "from authorities where user_id=?")
+                .passwordEncoder(new BCryptPasswordEncoder());
 
            /* //login con db
         auth.jdbcAuthentication().dataSource(dataSource)
@@ -69,7 +69,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 */
         http.authorizeRequests().
                 antMatchers("/admin**").
-                hasAnyRole("ADMIN").
+                hasAnyRole("ADMIN", "USER").
                 and().
                 formLogin().
                 loginPage("/login").

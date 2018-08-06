@@ -11,22 +11,16 @@ public class UserAndRol {
     @NotNull
     @Column(name="user_id")
     String idUsuario;
-    @Column(name="nombre_usuario")
-    String nombreUsuario;
     @Column(name="password")
     String password;
     @Column(name="habilitado")
     Boolean habilitado;
 
 
+    @ManyToOne
+    @JoinColumn(name = "user_id",referencedColumnName = "user_id", insertable = false, updatable = false)
+    private Roles roles;
 
-    public String getNombreUsuario() {
-        return nombreUsuario;
-    }
-
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
-    }
 
     public String getPassword() {
         return password;
