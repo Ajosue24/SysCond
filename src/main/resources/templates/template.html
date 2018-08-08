@@ -30,7 +30,7 @@
                     <tbody>
                     <tr>
                         <th scope="row">Número</th>
-                        <td>[[${data.getNumeroRecibo()}]]</td>
+                        <td>[[${movimientosInmueble.getCodMovInmueble()}]]</td>
                     </tr>
                     <tr>
                         <th scope="row">Página</th>
@@ -55,10 +55,10 @@
                     <th scope="col">Fecha</th>
                 </tr>
                 <tr>
-                    <td>[[${data.getInmueble()}]]</td>
-                    <td>[[${data.getPropietario()}]]</td>
-                    <td>[[${data.getAlicuota()}]]</td>
-                    <td>[[${data.getFecha()}]]</td>
+                    <td>[[${inmuebleInf.getCodigInmueble()}]]</td>
+                    <td>Nombre_propietario</td>
+                    <td>[[${inmuebleInf.getAlicuota()}]]</td>
+                    <td>[[${gastosInmuebleInf.getFechaGastosInmueble()}]]</td>
                 </tr>
                 </tbody>
             </table></div>
@@ -75,11 +75,14 @@
                     <th scope="col">Alicuota</th>
                 </tr>
                 <tr>
-                    <td>[[${data.getCodigoGasto()}]]</td>
-                    <td>[[${data.getNombreGasto()}]]</td>
-                    <td>[[${data.getDescripcion()}]]</td>
-                    <td>[[${data.getMontoGasto()}]]</td>
-                    <td>[[${data.getAlicuotaMonto()}]]</td>
+                <tbody>
+                <!--/*@thymesVar id="gastoDetalles" type="com.vv.model.DetallesGastosInmueble"*/-->
+                <tr th:each="gastoDetalles : ${listadoGastos}" >
+                    <td th:text="${gastoDetalles.codigGastos.codigGastos}"></td>
+                    <td th:text="${gastoDetalles.codigGastos.descrGastos}"></td>
+                    <td th:text="${gastoDetalles.detallesGastoInmueble}"></td>
+                    <td th:text="${gastoDetalles.montoGasto}"></td>
+                    <td th:text="${gastoDetalles.montoGasto * inmuebleInf.alicuota/100}"></td>
                 </tr>
                 </tbody>
             </table>
@@ -121,23 +124,23 @@
                             <tbody>
                             <tr>
                                 <th width="214" scope="row">TOTAL GASTOS</th>
-                                <td width="279">[[${data.getTotalMontoRecibo()}]]</td>
+                               <td width="279">[[${gastosInmuebleInf.getMontoSubTotalGastosInmueble()}]]</td>
                             </tr>
                             <tr>
                                 <th width="214" scope="row">SUB.T GASTOS COMUNES</th>
-                                <td width="279">[[${data.getSubTotalGastos()}]]</td>
+                                <td width="279">[[${movimientosInmueble.getMontoMensualMov()}]]</td>
                             </tr>
                             <tr>
                                 <th scope="row">SUB.T G INDIVIDUALES</th>
-                                <td>&nbsp;</td>
+                                <td>0.00</td>
                             </tr>
                             <tr>
                                 <th scope="row">SUB.T FONDOS</th>
-                                <td>[[${data.getTotalFondos()}]]</td>
+                               <td>0.00</td>
                             </tr>
                             <tr>
                                 <th scope="row">TOTAL A CANCELAR</th>
-                                <td>[[${data.getTotalCancelar()}]]</td>
+                          <td>[[${movimientosInmueble.getMontoMensualMov()}]]</td>
                             </tr>
                             </tbody>
                         </table></td>

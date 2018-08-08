@@ -5,10 +5,10 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-@Table(name="usuario_sistema")
+@Table(name="authorities")
 public class Roles {
 
-    @Id
+        @Id
         @Column(name="user_id")
         String idUsuario;
         @Column(name="authority")

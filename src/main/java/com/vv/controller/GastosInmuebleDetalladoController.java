@@ -88,7 +88,7 @@ public class GastosInmuebleDetalladoController {
     public ModelAndView guardarGastosM(@Valid @ModelAttribute("formDetallesGastosInmueble") DetallesGastosInmueble detallesGastosInmueble,
                                        @RequestParam(value="finalizarG", required=false) String finalizarG,
                                        BindingResult bindingResult,ModelAndView model) {
-
+        gastosInmueble = gastosInmuebleService.obtenerGastoInmuebleSiNofinalizado();
         List<DetallesGastosInmueble> listaDetallesGastosInmuebles = new ArrayList<>();
         model.setViewName("/gastosInmuebleM");
         try{
@@ -109,11 +109,12 @@ public class GastosInmuebleDetalladoController {
               gastosInmueble.setCondCondominio(1l);
                 gastosInmueble.setGenerado(true);
                 gastosInmuebleService.guardarActualizarGastoInmueble(gastosInmueble);
+               listaDetallesGastosInmuebles = gastosDetalladosService.listaDetallesActuales(gastosInmueble);
                 List<Inmueble> listaInmuebles= inmuebleService.obtenerListaInmuebles();
                 try {
                     for(Inmueble inmueble:listaInmuebles){
                         registrarPorCadaInmueble(inmueble);
-
+                        generarPDF(inmueble,listaDetallesGastosInmuebles);
                     }
                 }catch (Exception e){
                     e.printStackTrace();
@@ -185,11 +186,23 @@ return  model;
         movimientosInmuebleService.guardarMovimientosInmueble(movimientosInmuebles);
     }
 //Genera PDF correspondiente
-private void  generarPDF(MovimientosInmuebles movimientosInmuebles){
-        
+private void  generarPDF(Inmueble inmueble,List<DetallesGastosInmueble> listadoGastos){
+
+       // movimientosInmuebleService.listarPorNumeroDeRecibo(gastosInmueble.getCodigGastosInmueble());
+
+         RecibosOFacturas recibosOFacturas = new RecibosOFacturas();
+         try {
+             recibosOFacturas.generatePdf(gastosInmueble,listadoGastos,inmueble,movimientosInmuebleService.obtenerMovPorReciboEInmueble(gastosInmueble,inmueble));
+         }catch (Exception e){
+             e.printStackTrace();
+         }
+
+
+
+     /*gastosInmuebleInf;
     gastosInmueble;
     listaDetallesGastosInmuebles;
-    inmueble
+    inmuebleInf*/
 
 }
 }

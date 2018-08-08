@@ -1,6 +1,10 @@
 package com.vv.controller;
 
 
+import com.vv.model.DetallesGastosInmueble;
+import com.vv.model.GastosInmueble;
+import com.vv.model.Inmueble;
+import com.vv.model.MovimientosInmuebles;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +20,7 @@ import org.xhtmlrenderer.pdf.ITextRenderer;
 
 import java.io.*;
 import java.nio.file.FileSystems;
+import java.util.List;
 
 import static com.itextpdf.text.pdf.BaseFont.EMBEDDED;
 import static com.itextpdf.text.pdf.BaseFont.IDENTITY_H;
@@ -26,18 +31,18 @@ import static org.thymeleaf.templatemode.TemplateMode.HTML;
 @RequestMapping(value="/recibos")
 public class RecibosOFacturas {
 
-    private static final String OUTPUT_FILE = "PDF/test.pdf";
+    //private static final String OUTPUT_FILE = "PDF/test.pdf";
     private static final String UTF_8 = "UTF-8";
 
     @RequestMapping(value="/",method=RequestMethod.GET )
     public ModelAndView cargarFactura() {
         ModelAndView model = new ModelAndView("template");
         Data data = exampleDataForJohnDoe();
-        try {
-            generatePdf();
+      /*  try {
+           // generatePdf();
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
         model.addObject("data", data);
         return model;
     }
@@ -66,7 +71,8 @@ public class RecibosOFacturas {
     }
 
     @Test
-    public void generatePdf() throws Exception {
+    public void generatePdf(GastosInmueble gastosInmuebleInf, List<DetallesGastosInmueble> listadoGastos,
+                            Inmueble inmueble, MovimientosInmuebles movimientosInmuebles) throws Exception {
 
         // We set-up a Thymeleaf rendering engine. All Thymeleaf templates
         // are HTML-based files located under "src/test/resources". Beside
@@ -91,7 +97,12 @@ public class RecibosOFacturas {
         Data data = exampleDataForJohnDoe();
 
         Context context = new Context();
+        context.setVariable("movimientosInmueble",movimientosInmuebles);
+        context.setVariable("gastosInmuebleInf", gastosInmuebleInf);
+        context.setVariable("inmuebleInf", inmueble);
+        context.setVariable("listadoGastos", listadoGastos);
         context.setVariable("data", data);
+
 
         // Flying Saucer needs XHTML - not just normal HTML. To make our life
         // easy, we use JTidy to convert the rendered Thymeleaf template to
@@ -115,9 +126,9 @@ public class RecibosOFacturas {
                 .toString();
         renderer.setDocumentFromString(xHtml, baseUrl);
         renderer.layout();
-
+        String i = "PDF/"+inmueble.getCodigInmueble().trim()+gastosInmuebleInf.getDescrGastosInmueble().trim()+".pdf";
         // And finally, we create the PDF:
-        OutputStream outputStream = new FileOutputStream(OUTPUT_FILE);
+        OutputStream outputStream = new FileOutputStream(i.trim());
         renderer.createPDF(outputStream);
         outputStream.close();
     }

@@ -15,7 +15,7 @@ public class MovimientosInmuebles {
 
 
     @Column(name = "monto_mes_mov_inmu")
-    Double MontoMensualMov;
+    Double montoMensualMov;
 
     @Column(name = "fecha_mov_inmu")
     Date fechaMov;
@@ -49,11 +49,11 @@ public class MovimientosInmuebles {
 
 
     public Double getMontoMensualMov() {
-        return MontoMensualMov;
+        return montoMensualMov;
     }
 
     public void setMontoMensualMov(Double montoMensualMov) {
-        MontoMensualMov = montoMensualMov;
+        this.montoMensualMov = montoMensualMov;
     }
 
     public Date getFechaMov() {
