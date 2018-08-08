@@ -1,5 +1,8 @@
 package com.vv.model;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -15,8 +18,6 @@ public class Roles {
         String authority;
 
 
-    @OneToMany(mappedBy = "idUsuario", fetch = FetchType.EAGER)
-    private List<UserAndRol> userAndRols;
 
     public String getIdUsuario() {
         return idUsuario;
@@ -34,11 +35,4 @@ public class Roles {
         this.authority = authority;
     }
 
-    public List<UserAndRol> getUserAndRols() {
-        return userAndRols;
-    }
-
-    public void setUserAndRols(List<UserAndRol> userAndRols) {
-        this.userAndRols = userAndRols;
-    }
 }

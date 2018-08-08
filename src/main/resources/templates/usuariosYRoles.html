@@ -101,6 +101,8 @@
                                             <td th:text="${listaUsuarios.idUsuario}"></td>
                                             <td th:text="${listaUsuarios.password}"></td>
                                             <td th:text="${listaUsuarios.habilitado}"></td>
+                                            <td>
+                                                <a th:href="@{/usuariosYRoles/editarUsuario/} + ${listaUsuarios.idUsuario}" class="btn btn-round btn-info btn-xs"><i class="fa fa-wrench"></i> Editar </a></td>
                                         </tr>
 
                                         </tbody>

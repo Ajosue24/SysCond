@@ -8,6 +8,7 @@ import com.vv.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -47,7 +48,13 @@ public class UsuariosYRolesController {
         return model;
      }
 
-
+    @RequestMapping(value="/editarUsuario/{nombreUsuario}",method=RequestMethod.GET )
+    public ModelAndView editarUsuario(@PathVariable String nombreUsuario) {
+        ModelAndView model = new ModelAndView("usuariosYRoles");
+        model.addObject("listaUsuarios",userService.listaUsuario());
+        model.addObject("formUsuariosYRoles",userService.buscarUsuario(nombreUsuario));
+        return model;
+    }
 
 
 

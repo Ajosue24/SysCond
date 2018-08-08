@@ -2,6 +2,7 @@ package com.vv.service;
 
 import com.vv.model.UserAndRol;
 import com.vv.repository.UserRepository;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,5 +33,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserAndRol> listaUsuario() {
         return (List<UserAndRol>)userRepository.findAll();
+    }
+
+    public UserAndRol buscarUsuario(String nombreUsuario){
+        return userRepository.findById(nombreUsuario).get();
     }
 }

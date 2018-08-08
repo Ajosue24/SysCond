@@ -17,11 +17,6 @@ public class UserAndRol {
     Boolean habilitado;
 
 
-    @ManyToOne
-    @JoinColumn(name = "user_id",referencedColumnName = "user_id", insertable = false, updatable = false)
-    private Roles roles;
-
-
     public String getPassword() {
         return password;
     }
@@ -45,4 +40,5 @@ public class UserAndRol {
     public void setHabilitado(Boolean habilitado) {
         this.habilitado = habilitado;
     }
+
 }

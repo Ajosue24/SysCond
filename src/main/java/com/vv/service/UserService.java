@@ -11,4 +11,6 @@ public interface UserService {
     void guardarEditarUsuario(UserAndRol userAndRol);
 
     List<UserAndRol> listaUsuario();
+
+    UserAndRol buscarUsuario(String nombreUsuario);
 }
